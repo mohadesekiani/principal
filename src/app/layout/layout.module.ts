@@ -7,16 +7,13 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { MenuComponent } from './component/menu/menu.component';
 
 @NgModule({
-  declarations: [
-    LayoutComponent,
-    MenuComponent
-  ],
+  declarations: [LayoutComponent, MenuComponent],
   imports: [
     LayoutRoutingModule,
     SharedModule,
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-  ]
+  ],
 })
-export class LayoutModule { }
+export class LayoutModule {}

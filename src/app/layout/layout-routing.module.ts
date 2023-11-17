@@ -8,16 +8,12 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: 'Train',
+        path: 'user',
         loadChildren: () =>
-          import('../list-user/list-user.module').then(
-            (m) => m.ListUserModule
-          ),
+          import('../list-user/list-user.module').then((m) => m.ListUserModule),
       },
-     
     ],
   },
-
 ];
 
 @NgModule({
