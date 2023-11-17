@@ -1,5 +1,6 @@
 export interface IListMenu {
-    title: string;
-    active: boolean;
-    route: string;
+  title: string;
+  active: boolean;
+  route: string;
+  value: string;
 }
