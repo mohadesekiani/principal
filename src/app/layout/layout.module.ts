@@ -1,15 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { LayoutComponent } from './component/layout/layout.component';
-import { LayoutRoutingModule } from './layout-routing.module';
 import { MenuComponent } from './component/menu/menu.component';
+import { LayoutRoutingModule } from './layout-routing.module';
 
 @NgModule({
   declarations: [LayoutComponent, MenuComponent],
   imports: [
     LayoutRoutingModule,
+    CommonModule,
     SharedModule,
     RouterModule,
     ReactiveFormsModule,

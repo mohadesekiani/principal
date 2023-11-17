@@ -1,26 +1,23 @@
-import { MenuComponent } from "./menu.component";
-
+import { MenuComponent } from './menu.component';
 
 describe('SUT: MenuComponent', () => {
   let sut: MenuComponent;
 
   beforeEach(() => {
     sut = new MenuComponent();
-    sut.ngOnInit()
-
+    sut.ngOnInit();
   });
 
   it('should create', () => {
-    // assert 
+    // assert
     expect(sut).toBeTruthy();
   });
 
   it('should be create properly', () => {
     // assert
     expect(sut.listMenu).toEqual([
-      { route: '/', title: 'user', active: true }, { route: '/userGroup', title: 'user Group', active: false }
-    ])
+      { route: '/user', title: 'user', active: true },
+      { route: '/userGroup', title: 'user Group', active: false },
+    ]);
   });
-
-
 });

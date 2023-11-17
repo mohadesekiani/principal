@@ -9,7 +9,7 @@ import { IListMenu } from 'src/app/core/model/interface/list-menu.interface';
 export class MenuComponent {
   listMenu: IListMenu[] = [
     {
-      route: '/',
+      route: '/user',
       value: 'user',
       title: 'user',
       active: true,
