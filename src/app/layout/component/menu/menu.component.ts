@@ -15,7 +15,7 @@ export class MenuComponent {
       active: true,
     },
     {
-      route: '/userGroup',
+      route: '/user-group',
       value: 'userGroup',
       title: 'user Group',
       active: false,

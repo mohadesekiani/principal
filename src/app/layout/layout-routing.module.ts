@@ -12,6 +12,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('../list-user/list-user.module').then((m) => m.ListUserModule),
       },
+      {
+        path: 'user-group',
+        loadChildren: () =>
+          import('../list-user/list-user.module').then((m) => m.ListUserModule),
+      },
     ],
   },
 ];
