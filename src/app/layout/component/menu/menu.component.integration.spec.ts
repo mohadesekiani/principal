@@ -37,9 +37,7 @@ describe('SUT(Integration): MenuComponent', () => {
     fixture.detectChanges();
 
     // assert 
-    // check 
-    // expect(matListItemUser.attributes['routerLink']).toBe('/user');
-    // expect(matListItemUserGroup.attributes['routerLink']).toBe('/user-group');
+    // check  attributes['routerLink']
     expect(matListItemUser.getAttribute('routerLinkActive')).toBe('active:bg-violet-700');
   });
 
