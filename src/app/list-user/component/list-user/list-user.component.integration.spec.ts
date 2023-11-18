@@ -1,4 +1,3 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,12 +12,9 @@ describe('SUT(Integration): ListUserComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [NoopAnimationsModule, SharedModule, BrowserModule,RouterTestingModule],
+            imports: [NoopAnimationsModule, SharedModule, BrowserModule, RouterTestingModule],
             declarations: [ListUserComponent],
             providers: [AbstractUserDataService],
-            schemas: [
-                NO_ERRORS_SCHEMA
-            ]
         });
         fixture = TestBed.createComponent(ListUserComponent);
         sut = fixture.componentInstance;

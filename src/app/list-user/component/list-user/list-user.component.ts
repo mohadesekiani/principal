@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractUserDataService } from '../../services/abstract-user-data.service';
 import { IUser } from 'src/app/core/model/interface/user.interface';
 import { Router } from '@angular/router';
+import { UserTableHeaderEnum } from 'src/app/core/model/enum/user-table-heder';
 
 @Component({
   selector: 'app-list-user',
@@ -11,6 +12,10 @@ import { Router } from '@angular/router';
 export class ListUserComponent {
   loading = false;
   allUser!: IUser[];
+  itemHeader = Object.values(UserTableHeaderEnum).map((value) => ({
+    title: value.replace(/([a-z])([A-Z])/g, '$1 $2'),
+    value,
+  }));
 
   constructor(private userDataService: AbstractUserDataService, private router: Router) {
     if (!userDataService) {

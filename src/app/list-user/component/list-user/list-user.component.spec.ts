@@ -4,6 +4,7 @@ import { ListUserComponent } from './list-user.component';
 import { AbstractUserDataService } from '../../services/abstract-user-data.service';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
+import { UserTableHeaderEnum } from 'src/app/core/model/enum/user-table-heder';
 
 describe('SUT: ListUserComponent', () => {
   let sut: ListUserComponent;
@@ -38,14 +39,21 @@ describe('SUT: ListUserComponent', () => {
     expect(sut).toBeTruthy();
   });
 
+  it('should be create properly', () => {
+    // assert
+    expect(sut.loading).toBeFalsy()
+    expect(sut.allUser).toEqual(fakeUsers)
+    expect(sut.itemHeader).toEqual([{ title: 'First Name', value: UserTableHeaderEnum.FirstName }, { title: 'Last Name', value: UserTableHeaderEnum.LastName }, { title: 'Email', value: UserTableHeaderEnum.Email },{ title: 'Opr', value: UserTableHeaderEnum.Opr }])
+  });
+
   it('should be throw exception with null userDataService', () => {
     // assert
-    expect(() => new ListUserComponent(null as any,router)).toThrow('userDataService is empty')
+    expect(() => new ListUserComponent(null as any, router)).toThrow('userDataService is empty')
   });
 
   it('should be throw exception with null router', () => {
     // assert
-    expect(() => new ListUserComponent(userDataService,null as any)).toThrow('router is empty')
+    expect(() => new ListUserComponent(userDataService, null as any)).toThrow('router is empty')
   });
   it('should be all data returned when the data service is called', () => {
     // assert
@@ -70,7 +78,7 @@ describe('SUT: ListUserComponent', () => {
     sut.editUser('315768d5')
 
     // assert
-    expect(router.navigate).toHaveBeenCalledWith(['/user/','315768d5']);
+    expect(router.navigate).toHaveBeenCalledWith(['/user/', '315768d5']);
   });
 
   it('should be when the add button is clicked ,go to the add new user form', () => {
