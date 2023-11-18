@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ListUserModule } from '../list-user/list-user.module';
 import { SharedModule } from '../shared/shared.module';
 import { LayoutComponent } from './component/layout/layout.component';
 import { MenuComponent } from './component/menu/menu.component';
@@ -11,11 +11,11 @@ import { LayoutRoutingModule } from './layout-routing.module';
   declarations: [LayoutComponent, MenuComponent],
   imports: [
     LayoutRoutingModule,
-    CommonModule,
     SharedModule,
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
+    ListUserModule
   ],
 })
 export class LayoutModule {}

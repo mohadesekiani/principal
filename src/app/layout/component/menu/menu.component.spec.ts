@@ -16,8 +16,8 @@ describe('SUT: MenuComponent', () => {
   it('should be create properly', () => {
     // assert
     expect(sut.listMenu).toEqual([
-      { route: '/user', title: 'user', active: true },
-      { route: '/userGroup', title: 'user Group', active: false },
+      {route: '/user',value: 'user',title: 'user',active: true,},
+      {route: '/user-group',value: 'userGroup',title: 'user Group',active: false,},
     ]);
   });
 });

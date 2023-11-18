@@ -8,18 +8,8 @@ import { IListMenu } from 'src/app/core/model/interface/list-menu.interface';
 })
 export class MenuComponent {
   listMenu: IListMenu[] = [
-    {
-      route: '/user',
-      value: 'user',
-      title: 'user',
-      active: true,
-    },
-    {
-      route: '/user-group',
-      value: 'userGroup',
-      title: 'user Group',
-      active: false,
-    },
+    {route: '/user',value: 'user',title: 'user',active: true},
+    {route: '/user-group',value: 'userGroup',title: 'user Group',active: false},
   ];
 
   ngOnInit(): void {}
