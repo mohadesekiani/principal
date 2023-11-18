@@ -6,6 +6,7 @@ import { TestUtil } from 'src/app/core-test/test-util';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MenuComponent } from './menu.component';
 import { MatListItem } from '@angular/material/list';
+import { RouterLink } from '@angular/router';
 describe('SUT(Integration): MenuComponent', () => {
   let sut: MenuComponent;
   let fixture: ComponentFixture<MenuComponent>;
@@ -30,15 +31,17 @@ describe('SUT(Integration): MenuComponent', () => {
     // arrange
     const matListItemUser = TestUtil.debugElement(fixture, 'mat-list-item[item-id="user"]').nativeElement
     const matListItemUserGroup = TestUtil.debugElement(fixture, 'mat-list-item[item-id="userGroup"]').nativeElement;
-    spyOn(matListItemUser,'click');
+    const allRouterLinkDir = TestUtil.directiveAllElement(fixture, RouterLink)
+    spyOn(matListItemUser, 'click');
 
-    // act 
+    // act
     matListItemUser.click()
+    matListItemUserGroup.click()
     fixture.detectChanges();
 
-    // assert 
-    // check  attributes['routerLink']
+    // assert
+    expect(allRouterLinkDir[0].attributes['ng-reflect-router-link']).toEqual('/user');
+    expect(allRouterLinkDir[1].attributes['ng-reflect-router-link']).toEqual('/user-group');
     expect(matListItemUser.getAttribute('routerLinkActive')).toBe('active:bg-violet-700');
   });
-
 });

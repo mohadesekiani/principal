@@ -9,7 +9,7 @@ import { UserTableHeaderEnum } from 'src/app/core/model/enum/user-table-heder';
 describe('SUT: ListUserComponent', () => {
   let sut: ListUserComponent;
   let router: jasmine.SpyObj<Router>;
-
+  let userDataService: jasmine.SpyObj<AbstractUserDataService>;
   const fakeUsers: IUser[] = [
     {
       id: '315768d5',
@@ -24,11 +24,12 @@ describe('SUT: ListUserComponent', () => {
       email: 'm2@gmail.com'
     },
   ];
-  const userDataService = jasmine.createSpyObj<AbstractUserDataService>({
-    getAllUserData: of(fakeUsers),
-    deleteUserData: of(fakeUsers),
-  })
+
   beforeEach(() => {
+    userDataService = jasmine.createSpyObj<AbstractUserDataService>({
+      getAllUserData: of(fakeUsers),
+      deleteUserData: of(fakeUsers),
+    });
     router = jasmine.createSpyObj<Router>('Router', ['navigate']) as any;
     sut = new ListUserComponent(userDataService, router);
     sut.ngOnInit();
@@ -43,7 +44,7 @@ describe('SUT: ListUserComponent', () => {
     // assert
     expect(sut.loading).toBeFalsy()
     expect(sut.allUser).toEqual(fakeUsers)
-    expect(sut.itemHeader).toEqual([{ title: 'First Name', value: UserTableHeaderEnum.FirstName }, { title: 'Last Name', value: UserTableHeaderEnum.LastName }, { title: 'Email', value: UserTableHeaderEnum.Email },{ title: 'Opr', value: UserTableHeaderEnum.Opr }])
+    expect(sut.itemHeader).toEqual([{ title: 'First Name', value: UserTableHeaderEnum.FirstName }, { title: 'Last Name', value: UserTableHeaderEnum.LastName }, { title: 'Email', value: UserTableHeaderEnum.Email }, { title: 'Opr', value: UserTableHeaderEnum.Opr }])
   });
 
   it('should be throw exception with null userDataService', () => {
@@ -63,14 +64,17 @@ describe('SUT: ListUserComponent', () => {
   });
 
   it('should be the desired line deleted when the delete button is click', () => {
+    // arrange
+    userDataService.getAllUserData.and.returnValues(of([fakeUsers[0]]));
+
     // act
-    sut.deletedUser('315768d5')
+    sut.deletedUser('315768d5');
 
     // assert
     expect(userDataService.deleteUserData).toHaveBeenCalledWith('315768d5')
-    expect(userDataService.getAllUserData).toHaveBeenCalled()
-    expect(sut.allUser).toEqual([{ id: 'a096aae1', firstName: 'm2', lastName: 'k2', email: 'm2@gmail.com' }])
-    expect(sut.loading).toBe(false)
+    expect(userDataService.getAllUserData).toHaveBeenCalled();
+    expect(sut.allUser).toEqual([fakeUsers[0]]);
+    expect(sut.loading).toBe(false);
   });
 
   it('should be when the edit button is clicked, it will go to the edit form with the user ID', () => {

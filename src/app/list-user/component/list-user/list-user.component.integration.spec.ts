@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AbstractUserDataService } from '../../services/abstract-user-data.service';
 import { ListUserComponent } from './list-user.component';
+import { UserDataService } from '../../services/user-data.service';
 
 describe('SUT(Integration): ListUserComponent', () => {
     let sut: ListUserComponent;
@@ -14,7 +15,12 @@ describe('SUT(Integration): ListUserComponent', () => {
         TestBed.configureTestingModule({
             imports: [NoopAnimationsModule, SharedModule, BrowserModule, RouterTestingModule],
             declarations: [ListUserComponent],
-            providers: [AbstractUserDataService],
+            providers: [
+                {
+                    provide: AbstractUserDataService,
+                    useClass: UserDataService,
+                }
+            ],
         });
         fixture = TestBed.createComponent(ListUserComponent);
         sut = fixture.componentInstance;
