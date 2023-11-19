@@ -12,4 +12,5 @@ describe('SUT: TableComponent', () => {
     expect(sut).toBeTruthy();
   });
 
+  
 });

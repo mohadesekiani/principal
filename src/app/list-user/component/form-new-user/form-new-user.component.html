@@ -1,0 +1,21 @@
+<form [formGroup]="form">
+    <mat-form-field>
+        <mat-label>Enter your lastName</mat-label>
+        <input matInput
+               formControlName="lastName"
+               id="lastName">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Enter your firstName</mat-label>
+        <input matInput
+               formControlName="firstName"
+               id="firstName">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input matInput
+               placeholder="pat@example.com"
+               formControlName="email"
+               id="email">
+    </mat-form-field>
+</form>

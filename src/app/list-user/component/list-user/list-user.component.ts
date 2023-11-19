@@ -17,6 +17,7 @@ export class ListUserComponent {
     value,
   }));
 
+
   constructor(private userDataService: AbstractUserDataService, private router: Router) {
     if (!userDataService) {
       throw 'userDataService is empty'
@@ -25,6 +26,7 @@ export class ListUserComponent {
       throw 'router is empty'
     }
   }
+
 
   ngOnInit(): void {
     this.receivedAllData()
