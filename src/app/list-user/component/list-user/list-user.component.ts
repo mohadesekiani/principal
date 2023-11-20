@@ -63,6 +63,6 @@ export class ListUserComponent {
   }
 
   addedUser() {
-    this.router.navigate(['/new-user']);
+    this.router.navigate(['/user/new']);
   }
 }

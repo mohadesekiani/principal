@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AbstractUserDataService } from '../../services/abstract-user-data.service';
 import { UserDataService } from '../../services/user-data.service';
-import { FormNewUserComponent } from './form-new-user.component';
+import { FormNewUserComponent } from './form-user.component';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { TestUtil } from 'src/app/core-test/test-util';
 import { isEmpty } from 'rxjs';
@@ -55,6 +55,18 @@ describe('SUT(Integration): FormNewUserComponent', () => {
 
         // assert 
         expect(emailEl.placeholder).toBe('pat@example.com')
+    });
+    // todo
+    it('should be called the submit function when the button is clicked', () => {
+        // arrange
+        const submitEl: HTMLButtonElement = TestUtil.nativeElement(fixture, '#submit')
+        spyOn(sut, 'submit');
+
+        // action
+        submitEl.click();
+
+        // assert
+        expect(sut.submit).toHaveBeenCalled();
     });
 
 });

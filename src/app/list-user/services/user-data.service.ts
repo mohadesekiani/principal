@@ -31,4 +31,9 @@ export class UserDataService extends AbstractUserDataService {
         this.myData[userIndex] = { ...this.myData[userIndex], ...updatedUserData };
         return of(this.myData);
     }
+
+    getByID(userId: string): Observable<any> {
+        return of(this.myData.filter(data => data.id === userId))
+
+    }
 }

@@ -76,4 +76,17 @@ describe('SUT: UserDataService', () => {
             { id: 'a096aae1', firstName: 'm2', lastName: 'k2', email: 'm2@gmail.com' }])
     });
 
+    it(`should be find the desired user according to the ID and return the user's data`, () => {
+        // arrange
+        let actual: IUser[] = []
+
+        // act
+        sut.getByID('a096aae1').subscribe((res) => {
+            actual = res;
+        })
+
+        // assert
+        expect(actual).toEqual([{ id: 'a096aae1', firstName: 'm2', lastName: 'k2', email: 'm2@gmail.com' }])
+    });
+
 })

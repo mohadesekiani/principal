@@ -11,18 +11,8 @@ describe('SUT: ListUserComponent', () => {
   let router: jasmine.SpyObj<Router>;
   let userDataService: jasmine.SpyObj<AbstractUserDataService>;
   const fakeUsers: IUser[] = [
-    {
-      id: '315768d5',
-      firstName: 'm1',
-      lastName: 'k1',
-      email: 'm1@gmail.com'
-    },
-    {
-      id: 'a096aae1',
-      firstName: 'm2',
-      lastName: 'k2',
-      email: 'm2@gmail.com'
-    },
+    { id: '315768d5', firstName: 'm1', lastName: 'k1', email: 'm1@gmail.com' },
+    { id: 'a096aae1', firstName: 'm2', lastName: 'k2', email: 'm2@gmail.com' },
   ];
 
   beforeEach(() => {
@@ -90,6 +80,6 @@ describe('SUT: ListUserComponent', () => {
     sut.addedUser()
 
     // assert
-    expect(router.navigate).toHaveBeenCalledWith(['/new-user']);
+    expect(router.navigate).toHaveBeenCalledWith(['/user/new']);
   });
 });

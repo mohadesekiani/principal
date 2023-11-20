@@ -1,4 +1,5 @@
-<form [formGroup]="form">
+<form [formGroup]="form"
+      (submit)="(submit)">
     <mat-form-field>
         <mat-label>Enter your lastName</mat-label>
         <input matInput
@@ -18,5 +19,5 @@
                formControlName="email"
                id="email">
     </mat-form-field>
-    <button>submit</button>
+    <button (click)="submit()" id="submit">submit</button>
 </form>
