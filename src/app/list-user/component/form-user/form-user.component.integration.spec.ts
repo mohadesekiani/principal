@@ -56,7 +56,7 @@ describe('SUT(Integration): FormUserComponent', () => {
         // assert 
         expect(emailEl.placeholder).toBe('pat@example.com')
     });
-    // todo
+
     it('should be called the submit function when the button is clicked', () => {
         // arrange
         const submitEl: HTMLButtonElement = TestUtil.nativeElement(fixture, '#submit')

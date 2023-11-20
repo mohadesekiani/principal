@@ -19,5 +19,5 @@
                formControlName="email"
                id="email">
     </mat-form-field>
-    <button (click)="submit()" id="submit">submit</button>
+    <button (click)="submit()" id="submit">{{isEditMode ? 'update' :'add'}}</button>
 </form>
