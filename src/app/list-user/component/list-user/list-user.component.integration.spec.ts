@@ -47,7 +47,6 @@ describe('SUT(Integration): ListUserComponent', () => {
 
     it('should be called the editUser function when the button is clicked', () => {
         // arrange
-        debugger
         const editEl: HTMLButtonElement = TestUtil.nativeElement(fixture, '#edit')
         spyOn(sut, 'editUser');
 
