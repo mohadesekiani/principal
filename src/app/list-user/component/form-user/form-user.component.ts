@@ -9,7 +9,7 @@ import { AbstractUserDataService } from '../../services/abstract-user-data.servi
   templateUrl: './form-user.component.html',
   styleUrls: ['./form-user.component.sass']
 })
-export class FormNewUserComponent {
+export class FormUserComponent {
   form!: FormGroup<IForm<IUser>>;
   isEditMode: boolean = false;
   itemId!: string;

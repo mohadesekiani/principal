@@ -5,18 +5,18 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AbstractUserDataService } from '../../services/abstract-user-data.service';
 import { UserDataService } from '../../services/user-data.service';
-import { FormNewUserComponent } from './form-user.component';
+import { FormUserComponent } from './form-user.component';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { TestUtil } from 'src/app/core-test/test-util';
 import { isEmpty } from 'rxjs';
 
-describe('SUT(Integration): FormNewUserComponent', () => {
-    let sut: FormNewUserComponent;
-    let fixture: ComponentFixture<FormNewUserComponent>;
+describe('SUT(Integration): FormUserComponent', () => {
+    let sut: FormUserComponent;
+    let fixture: ComponentFixture<FormUserComponent>;
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [NoopAnimationsModule, SharedModule, BrowserModule, RouterTestingModule],
-            declarations: [FormNewUserComponent],
+            declarations: [FormUserComponent],
             providers: [
                 {
                     provide: AbstractUserDataService,
@@ -24,7 +24,7 @@ describe('SUT(Integration): FormNewUserComponent', () => {
                 }
             ],
         });
-        fixture = TestBed.createComponent(FormNewUserComponent);
+        fixture = TestBed.createComponent(FormUserComponent);
         sut = fixture.componentInstance;
         fixture.detectChanges();
 

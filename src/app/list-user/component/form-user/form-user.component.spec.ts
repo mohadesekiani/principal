@@ -1,13 +1,13 @@
 
 import { FormBuilder, Validators } from '@angular/forms';
-import { FormNewUserComponent } from './form-user.component';
+import { FormUserComponent } from './form-user.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractUserDataService } from '../../services/abstract-user-data.service';
 import { of } from 'rxjs';
 import * as fakeData from '../../services/mock-data/index';
 import { IUser } from 'src/app/core/model/interface/user.interface';
-describe('SUT: FormNewUserComponent', () => {
-  let sut: FormNewUserComponent;
+describe('SUT: FormUserComponent', () => {
+  let sut: FormUserComponent;
   let fb: FormBuilder;
   let router: jasmine.SpyObj<Router>;
   let route: jasmine.SpyObj<ActivatedRoute>;
@@ -22,7 +22,7 @@ describe('SUT: FormNewUserComponent', () => {
     fb = new FormBuilder();
     router = jasmine.createSpyObj<Router>('Router', ['navigate']) as any;
     route = { params: jasmine.createSpyObj('params', ['subscribe']) } as jasmine.SpyObj<ActivatedRoute>;
-    sut = new FormNewUserComponent(fb, router, userDataService, route);
+    sut = new FormUserComponent(fb, router, userDataService, route);
     sut.ngOnInit()
   });
 
@@ -33,10 +33,10 @@ describe('SUT: FormNewUserComponent', () => {
 
   it('should be throw exception with null FormBuilder and router and userDataService and route', () => {
     // assert
-    expect(() => new FormNewUserComponent(null as any, router, userDataService, route)).toThrow('FormBuilder is empty')
-    expect(() => new FormNewUserComponent(fb, null as any, userDataService, route)).toThrow('router is empty')
-    expect(() => new FormNewUserComponent(fb, router, null as any, route)).toThrow('userDataService is empty')
-    expect(() => new FormNewUserComponent(fb, router, userDataService, null as any)).toThrow('route is empty')
+    expect(() => new FormUserComponent(null as any, router, userDataService, route)).toThrow('FormBuilder is empty')
+    expect(() => new FormUserComponent(fb, null as any, userDataService, route)).toThrow('router is empty')
+    expect(() => new FormUserComponent(fb, router, null as any, route)).toThrow('userDataService is empty')
+    expect(() => new FormUserComponent(fb, router, userDataService, null as any)).toThrow('route is empty')
   });
 
   it('should be create properly', () => {
