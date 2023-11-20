@@ -45,7 +45,7 @@ describe('SUT(Integration): ListUserComponent', () => {
         expect(sut.deletedUser).toHaveBeenCalled();
     });
 
-    fit('should be called the editUser function when the button is clicked', () => {
+    it('should be called the editUser function when the button is clicked', () => {
         // arrange
         debugger
         const editEl: HTMLButtonElement = TestUtil.nativeElement(fixture, '#edit')
