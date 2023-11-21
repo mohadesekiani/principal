@@ -67,7 +67,6 @@ describe('SUT: FormUserComponent', () => {
 
     // act
     sut.ngOnInit()
-    // sut['loadFormData']();
 
     // assert
     expect(sut['loadFormData']).toHaveBeenCalled()
