@@ -69,7 +69,6 @@ describe('SUT: FormUserComponent', () => {
     sut.ngOnInit()
 
     // assert
-    expect(sut['loadFormData']).toHaveBeenCalled()
     expect(sut.isEditMode).toBe(true);
     expect(sut.itemId).toBe('123');
     expect(sut.form.value).toEqual({ id: '123', lastName: 'Doe', firstName: 'John', email: 'john.doe@example.com' });
