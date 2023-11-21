@@ -48,7 +48,6 @@ describe('SUT: FormUserComponent', () => {
 
   it(`should be have an error 'required' when the value is null`, () => {
     // assert
-    expect(sut.form.controls.id.hasError('required')).toBeTruthy()
     expect(sut.form.controls.lastName.hasError('required')).toBeTruthy()
     expect(sut.form.controls.firstName.hasError('required')).toBeTruthy()
     expect(sut.form.controls.email.hasError('required')).toBeTruthy()
@@ -67,9 +66,11 @@ describe('SUT: FormUserComponent', () => {
     route.params = of({ id: '123' });
 
     // act
-    sut['loadFormData']();
+    sut.ngOnInit()
+    // sut['loadFormData']();
 
     // assert
+    expect(sut['loadFormData']).toHaveBeenCalled()
     expect(sut.isEditMode).toBe(true);
     expect(sut.itemId).toBe('123');
     expect(sut.form.value).toEqual({ id: '123', lastName: 'Doe', firstName: 'John', email: 'john.doe@example.com' });
@@ -106,7 +107,7 @@ describe('SUT: FormUserComponent', () => {
     // arrange
     route.params = of({ id: '123' });
     sut.isEditMode = true;
-    
+
     // act
     sut.ngOnInit()
     sut.form.patchValue({ lastName: 'm4', firstName: 'k4' })
@@ -114,8 +115,20 @@ describe('SUT: FormUserComponent', () => {
 
     // assert
     expect(sut.form.controls.id.value).toBe('123')
+    expect(sut.form.controls.lastName.value).toBe('m4')
     expect(userDataService.editUserData).toHaveBeenCalledWith('123', sut.form.value as IUser);
     expect(router.navigate).toHaveBeenCalledWith(['/user']);
   });
 
+  it('should not call editUserData when form is not valid', () => {
+    //arrange
+    sut.form.patchValue({ email: 'm@gmail.com' })
+
+    // act
+    sut['editUser']();
+
+    // assert
+    expect(sut.form.valid).toBeFalsy()
+    expect(userDataService.editUserData).not.toHaveBeenCalled();
+  });
 });

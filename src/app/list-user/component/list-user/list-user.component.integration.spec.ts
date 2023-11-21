@@ -33,6 +33,18 @@ describe('SUT(Integration): ListUserComponent', () => {
         expect(sut).toBeTruthy();
     });
 
+    it('should be called the addedUser function when the button is clicked', () => {
+        // arrange
+        const addEl: HTMLButtonElement = TestUtil.nativeElement(fixture, '#add')
+        spyOn(sut, 'addedUser');
+
+        // action
+        addEl.click();
+
+        // assert
+        expect(sut.addedUser).toHaveBeenCalled();
+    });
+
     it('should be called the deletedUser function when the button is clicked', () => {
         // arrange
         const deleteEl: HTMLButtonElement = TestUtil.nativeElement(fixture, '#delete')
@@ -55,5 +67,9 @@ describe('SUT(Integration): ListUserComponent', () => {
 
         // assert
         expect(sut.editUser).toHaveBeenCalled();
+    });
+
+    it('should be true when the value of allData is greater than zero', () => {
+        expect(sut.isAllData).toBeTruthy()
     });
 });

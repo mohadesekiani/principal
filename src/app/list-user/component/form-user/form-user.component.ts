@@ -31,13 +31,13 @@ export class FormUserComponent {
   }
 
   ngOnInit(): void {
-    this.form = this.createForm()
+    this.form = this.createForm();
     this.loadFormData()
   }
 
   private createForm() {
     return this.fb.group<IForm<IUser>>({
-      id: [null, Validators.required],
+      id: [null],
       lastName: [null, Validators.required],
       firstName: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
@@ -46,9 +46,9 @@ export class FormUserComponent {
 
   private loadFormData() {
     this.route.params.subscribe(params => {
-      this.itemId = params['id']
-      if (!this.itemId) { return; }
+      if (!params['id']) { return; }
       this.isEditMode = true;
+      this.itemId = params['id']
       this.userDataService.getByID(this.itemId).subscribe(data => {
         this.form.patchValue(data);
       });
@@ -68,10 +68,7 @@ export class FormUserComponent {
 
     } else {
       this.addedUser()
-
     }
-
-    this.router.navigate(['/user'])
   }
 
   private addedUser() {
@@ -82,11 +79,18 @@ export class FormUserComponent {
     this.userDataService.addedUserData(this.form.value as IUser).subscribe({
       next: (res) => { }
     })
+    this.router.navigate(['/user'])
+
   }
 
   private editUser() {
+    if (!this.form.valid) {
+      return;
+    }
     this.userDataService.editUserData(this.itemId, this.form.value as IUser).subscribe({
-      next: (res) => { }
+      next: (res) => {
+      }
     })
+    this.router.navigate(['/user'])
   }
 }

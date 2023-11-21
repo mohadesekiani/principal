@@ -1,4 +1,4 @@
-import { Observable, of } from "rxjs";
+import { Observable, first, of } from "rxjs";
 import { AbstractUserDataService } from "./abstract-user-data.service";
 import * as fakeData from './mock-data';
 import { IUser } from "src/app/core/model/interface/user.interface";
@@ -28,12 +28,13 @@ export class UserDataService extends AbstractUserDataService {
 
     editUserData(userId: string, updatedUserData: IUser): Observable<any> {
         const userIndex = this.myData.findIndex(user => user.id === userId);
-        this.myData[userIndex] = { ...this.myData[userIndex], ...updatedUserData };
+        this.myData[userIndex] = { ...this.myData[userIndex], ...updatedUserData, id: this.myData[userIndex].id };
         return of(this.myData);
     }
 
     getByID(userId: string): Observable<any> {
-        return of(this.myData.filter(data => data.id === userId))
-
+        return of(this.myData.find(data => data.id === userId)).pipe(
+            first()
+        );
     }
 }

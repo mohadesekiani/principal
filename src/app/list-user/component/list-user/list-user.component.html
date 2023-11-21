@@ -1,9 +1,10 @@
 <div>
     <div>
         <h3> list user </h3>
-        <button>add +</button>
+        <button (click)="addedUser()"
+                id="add">add +</button>
     </div>
-    <div>
+    <div *ngIf="isAllData()">
         <table>
             <tr>
                 <th *ngFor="let item of itemHeader">{{item.title}}</th>
@@ -13,10 +14,11 @@
                 <td>{{item.lastName}}</td>
                 <td>{{item.email}}</td>
                 <td>
-                    <mat-icon id="delete" (click)="deletedUser(item.id)">delete</mat-icon>
-                    <mat-icon id="edit" (click)="editUser(item.id)">edit</mat-icon>
+                    <mat-icon id="delete"
+                              (click)="deletedUser(item.id)">delete</mat-icon>
+                    <mat-icon id="edit"
+                              (click)="editUser(item.id)">edit</mat-icon>
                 </td>
-
             </tr>
         </table>
     </div>

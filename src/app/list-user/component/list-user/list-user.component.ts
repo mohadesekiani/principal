@@ -65,4 +65,8 @@ export class ListUserComponent {
   addedUser() {
     this.router.navigate(['/user/new']);
   }
+
+  isAllData(){
+    return this.allUser.length > 0
+  }
 }

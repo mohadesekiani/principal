@@ -78,7 +78,7 @@ describe('SUT: UserDataService', () => {
 
     it(`should be find the desired user according to the ID and return the user's data`, () => {
         // arrange
-        let actual: IUser[] = []
+        let actual!: IUser 
 
         // act
         sut.getByID('a096aae1').subscribe((res) => {
@@ -86,7 +86,7 @@ describe('SUT: UserDataService', () => {
         })
 
         // assert
-        expect(actual).toEqual([{ id: 'a096aae1', firstName: 'm2', lastName: 'k2', email: 'm2@gmail.com' }])
+        expect(actual).toEqual({ id: 'a096aae1', firstName: 'm2', lastName: 'k2', email: 'm2@gmail.com' })
     });
 
 })
