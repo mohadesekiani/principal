@@ -41,6 +41,8 @@ export class FormUserComponent {
       lastName: [null, Validators.required],
       firstName: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
+      name: [null, Validators.required],
+      description: [null, Validators.required],
     })
   }
 

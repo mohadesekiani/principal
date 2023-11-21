@@ -16,8 +16,12 @@ describe('SUT: FormUserComponent', () => {
   beforeEach(() => {
     userDataService = jasmine.createSpyObj<AbstractUserDataService>({
       addedUserData: of(fakeData),
-      getByID: of({ id: '123', lastName: 'Doe', firstName: 'John', email: 'john.doe@example.com' }),
-      editUserData: of({ id: '123', lastName: 'm3', firstName: 'k3', email: 'john.doe@example.com' })
+      getByID: of({
+        id: '123', lastName: 'Doe', firstName: 'John', email: 'john.doe@example.com', description: 'test for description', name: 'Doe John'
+      }),
+      editUserData: of({
+        id: '123', lastName: 'm3', firstName: 'k3', email: 'john.doe@example.com', description: 'test for description', name: 'm3 k3'
+      })
     });
     fb = new FormBuilder();
     router = jasmine.createSpyObj<Router>('Router', ['navigate']) as any;
@@ -42,7 +46,9 @@ describe('SUT: FormUserComponent', () => {
   it('should be create properly', () => {
     // assert
     expect(sut.form).toBeTruthy();
-    expect(sut.form.value).toEqual({ id: null, lastName: null, firstName: null, email: null });
+    expect(sut.form.value).toEqual({
+      id: null, lastName: null, firstName: null, email: null, description: null, name: null
+    });
     expect(sut.isEditMode).toBeFalsy();
   });
 
@@ -71,14 +77,18 @@ describe('SUT: FormUserComponent', () => {
     // assert
     expect(sut.isEditMode).toBe(true);
     expect(sut.itemId).toBe('123');
-    expect(sut.form.value).toEqual({ id: '123', lastName: 'Doe', firstName: 'John', email: 'john.doe@example.com' });
+    expect(sut.form.value).toEqual({
+      id: '123', lastName: 'Doe', firstName: 'John', email: 'john.doe@example.com', description: 'test for description', name: 'Doe John'
+    });
   });
 
   it(`should be when submitting,if there is no ID and the form is valid added new user 
       and return to the previous page`, () => {
     // arrange
     sut.isEditMode = false
-    sut.form.setValue({ id: '', lastName: 'm4', firstName: 'k4', email: 'm4@gmail.com' })
+    sut.form.setValue({
+      id: '', lastName: 'm4', firstName: 'k4', email: 'm4@gmail.com', description: 'test for description', name: 'm4 k4'
+    })
 
     // act
     sut.submit()
