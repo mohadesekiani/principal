@@ -8,6 +8,7 @@ describe('SUT: UserDataService', () => {
         sut = new UserDataService();
     })
     it('should be create', () => {
+        // assert
         expect(sut).toBeTruthy()
     });
 
@@ -41,7 +42,7 @@ describe('SUT: UserDataService', () => {
         // arrange
         let actual: IUser[] = []
         const newUser = {
-            id: 'a096aae2', firstName: 'm3', lastName: 'k3', email: 'm3@gmail.com', description: 'test for description', name: 'm2 k2'
+            id: 'a096aae2', firstName: 'm3', lastName: 'k3', email: 'm3@gmail.com', description: 'test for description', name: 'm3 k3'
         }
 
         // act
@@ -53,7 +54,7 @@ describe('SUT: UserDataService', () => {
         expect(actual).toEqual([
             { id: '315768d5', firstName: 'm1', lastName: 'k1', email: 'm1@gmail.com', description: 'test for description', name: 'm1 k1' },
             { id: 'a096aae1', firstName: 'm2', lastName: 'k2', email: 'm2@gmail.com', description: 'test for description', name: 'm2 k2' },
-            { id: 'a096aae2', firstName: 'm3', lastName: 'k3', email: 'm3@gmail.com', description: 'test for description', name: 'm2 k2' }
+            { id: 'a096aae2', firstName: 'm3', lastName: 'k3', email: 'm3@gmail.com', description: 'test for description', name: 'm3 k3' }
         ]);
     });
 

@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormUserComponent } from '../list-user/component/form-user/form-user.component';
 import { LayoutComponent } from './component/layout/layout.component';
 import { ListUserComponent } from '../list-user/component/list-user/list-user.component';
+import { FormUserGroupComponent } from '../list-user-group/components/form-user-group/form-user-group.component';
+import { ListUserGroupComponent } from '../list-user-group/components/list-user-group/list-user-group.component';
 
 const routes: Routes = [
   {
@@ -18,16 +20,15 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'user-group',
+    path: '',
     component: LayoutComponent,
     children: [
       {
         path: 'user-group',
-        loadChildren: () =>
-          import('../list-user/list-user.module').then((m) => m.ListUserModule),
+        component: ListUserGroupComponent
       },
-      { path: 'user-group/new', component: FormUserComponent },
-      { path: 'user-group/:id', component: FormUserComponent },
+      { path: 'user-group/new', component: FormUserGroupComponent },
+      { path: 'user-group/:id', component: FormUserGroupComponent },
     ],
   },
 ];

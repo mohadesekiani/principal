@@ -34,7 +34,7 @@ describe('SUT: ListUserComponent', () => {
     // assert
     expect(sut.loading).toBeFalsy()
     expect(sut.allUser).toEqual(fakeUsers)
-    expect(sut.itemHeader).toEqual([{ title: 'First Name', value: UserTableHeaderEnum.FirstName }, { title: 'Last Name', value: UserTableHeaderEnum.LastName }, { title: 'Email', value: UserTableHeaderEnum.Email }, { title: 'Opr', value: UserTableHeaderEnum.Opr }])
+    expect(sut.itemHeader).toEqual([{ title: 'Name', value: UserTableHeaderEnum.Name }, { title: 'Description', value: UserTableHeaderEnum.Description }, { title: 'First Name', value: UserTableHeaderEnum.FirstName }, { title: 'Last Name', value: UserTableHeaderEnum.LastName }, { title: 'Email', value: UserTableHeaderEnum.Email }, { title: 'Opr', value: UserTableHeaderEnum.Opr }])
   });
 
   it('should be throw exception with null userDataService', () => {

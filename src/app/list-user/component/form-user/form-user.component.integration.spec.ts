@@ -41,12 +41,16 @@ describe('SUT(Integration): FormUserComponent', () => {
         const lastNameCtrl = TestUtil.formControl(fixture, '#lastName')
         const firstNameCtrl = TestUtil.formControl(fixture, '#firstName')
         const emailCtrl = TestUtil.formControl(fixture, '#email')
+        const nameCtrl = TestUtil.formControl(fixture, '#name')
+        const descriptionCtrl = TestUtil.formControl(fixture, '#description')
 
         // assert
         expect(sut.form).toBe(formEl.form);
         expect(sut.form.controls.lastName).toBe(lastNameCtrl.control);
         expect(sut.form.controls.firstName).toBe(firstNameCtrl.control);
         expect(sut.form.controls.email).toBe(emailCtrl.control);
+        expect(sut.form.controls.name).toBe(nameCtrl.control);
+        expect(sut.form.controls.description).toBe(descriptionCtrl.control);
     });
 
     it('should be binding', () => {

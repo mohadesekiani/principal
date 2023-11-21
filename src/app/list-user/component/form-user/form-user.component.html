@@ -1,6 +1,18 @@
 <form [formGroup]="form"
       (submit)="(submit)">
     <mat-form-field>
+        <mat-label>Enter your Name</mat-label>
+        <input matInput
+               formControlName="name"
+               id="name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Enter your lastName</mat-label>
+        <input matInput
+               formControlName="description"
+               id="description">
+    </mat-form-field>
+    <mat-form-field>
         <mat-label>Enter your lastName</mat-label>
         <input matInput
                formControlName="lastName"
@@ -19,5 +31,6 @@
                formControlName="email"
                id="email">
     </mat-form-field>
-    <button (click)="submit()" id="submit">{{isEditMode ? 'update' :'add'}}</button>
+    <button (click)="submit()"
+            id="submit">{{isEditMode ? 'update' :'add'}}</button>
 </form>

@@ -1,1 +1,24 @@
-<p>list-user-group works!</p>
+<div>
+    <div>
+        <h3> list user group </h3>
+        <button (click)="addedUserGroup()"
+                id="add">add +</button>
+    </div>
+    <div *ngIf="isAllData()">
+        <table>
+            <tr>
+                <th *ngFor="let item of itemHeader">{{item.title}}</th>
+            </tr>
+            <tr *ngFor="let item of allUserGroup">
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td>
+                    <mat-icon id="delete"
+                              (click)="deletedUserGroup(item.id)">delete</mat-icon>
+                    <mat-icon id="edit"
+                              (click)="editUserGroup(item.id)">edit</mat-icon>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

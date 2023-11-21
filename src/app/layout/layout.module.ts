@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { LayoutComponent } from './component/layout/layout.component';
 import { MenuComponent } from './component/menu/menu.component';
 import { LayoutRoutingModule } from './layout-routing.module';
+import { ListUserGroupModule } from '../list-user-group/list-user-group.module';
 
 @NgModule({
   declarations: [LayoutComponent, MenuComponent],
@@ -15,7 +16,8 @@ import { LayoutRoutingModule } from './layout-routing.module';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    ListUserModule
+    ListUserModule,
+    ListUserGroupModule
   ],
 })
-export class LayoutModule {}
+export class LayoutModule { }
