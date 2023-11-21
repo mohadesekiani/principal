@@ -1,13 +1,12 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { ListUserGroupComponent } from './list-user-group.component';
-import { UserGroupDataService } from '../../services/user-group-data.service';
-import { AbstractUserGroupDataService } from '../../services/abstract-user-group-data.service';
-import { TestUtil } from 'src/app/core-test/test-util';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TestUtil } from 'src/app/core-test/test-util';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { AbstractUserGroupDataService } from '../../services/abstract-user-group-data.service';
+import { UserGroupDataService } from '../../services/user-group-data.service';
+import { ListUserGroupComponent } from './list-user-group.component';
 describe('SUT(Integration): ListUserGroupComponent', () => {
     let sut: ListUserGroupComponent;
     let fixture: ComponentFixture<ListUserGroupComponent>;
