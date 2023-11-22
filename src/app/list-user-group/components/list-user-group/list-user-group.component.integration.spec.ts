@@ -4,9 +4,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TestUtil } from 'src/app/core-test/test-util';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AbstractUserGroupDataService } from '../../services/abstract-user-group-data.service';
 import { UserGroupDataService } from '../../services/user-group-data.service';
 import { ListUserGroupComponent } from './list-user-group.component';
+import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
 describe('SUT(Integration): ListUserGroupComponent', () => {
     let sut: ListUserGroupComponent;
     let fixture: ComponentFixture<ListUserGroupComponent>;
@@ -16,7 +16,7 @@ describe('SUT(Integration): ListUserGroupComponent', () => {
             declarations: [ListUserGroupComponent],
             providers: [
                 {
-                    provide: AbstractUserGroupDataService,
+                    provide: AbstractDataService,
                     useClass: UserGroupDataService,
                 }
             ],

@@ -1,32 +1,32 @@
 
-import { FormBuilder, Validators } from '@angular/forms';
-import { FormUserComponent } from './form-user.component';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AbstractUserDataService } from '../../services/abstract-user-data.service';
 import { of } from 'rxjs';
-import * as fakeData from '../../services/mock-data/index';
+import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
 import { IUser } from 'src/app/core/model/interface/user.interface';
+import * as fakeData from '../../services/mock-data/index';
+import { FormUserComponent } from './form-user.component';
 describe('SUT: FormUserComponent', () => {
   let sut: FormUserComponent;
   let fb: FormBuilder;
   let router: jasmine.SpyObj<Router>;
   let route: jasmine.SpyObj<ActivatedRoute>;
-  let userDataService: jasmine.SpyObj<AbstractUserDataService>;
+  let userDataService: jasmine.SpyObj<AbstractDataService<IUser>>;
 
   beforeEach(() => {
-    userDataService = jasmine.createSpyObj<AbstractUserDataService>({
-      addedUserData: of(fakeData),
+    userDataService = jasmine.createSpyObj<AbstractDataService<IUser>>({
+      addedData: of(fakeData),
       getByID: of({
         id: '123', lastName: 'Doe', firstName: 'John', email: 'john.doe@example.com', description: 'test for description', name: 'Doe John'
       }),
-      editUserData: of({
+      editData: of({
         id: '123', lastName: 'm3', firstName: 'k3', email: 'john.doe@example.com', description: 'test for description', name: 'm3 k3'
       })
     });
     fb = new FormBuilder();
     router = jasmine.createSpyObj<Router>('Router', ['navigate']) as any;
     route = { params: jasmine.createSpyObj('params', ['subscribe']) } as jasmine.SpyObj<ActivatedRoute>;
-    sut = new FormUserComponent(fb, router, userDataService, route);
+    sut = new FormUserComponent(router, route, userDataService);
     sut.ngOnInit()
   });
 
@@ -37,10 +37,9 @@ describe('SUT: FormUserComponent', () => {
 
   it('should be throw exception with null FormBuilder and router and userDataService and route', () => {
     // assert
-    expect(() => new FormUserComponent(null as any, router, userDataService, route)).toThrow('FormBuilder is empty')
-    expect(() => new FormUserComponent(fb, null as any, userDataService, route)).toThrow('router is empty')
-    expect(() => new FormUserComponent(fb, router, null as any, route)).toThrow('userDataService is empty')
-    expect(() => new FormUserComponent(fb, router, userDataService, null as any)).toThrow('route is empty')
+    expect(() => new FormUserComponent(null as any, route, userDataService)).toThrow('router is empty')
+    expect(() => new FormUserComponent(router, route, null as any)).toThrow('userDataService is empty')
+    expect(() => new FormUserComponent(router, null as any, userDataService)).toThrow('route is empty')
   });
 
   it('should be create properly', () => {
@@ -97,7 +96,7 @@ describe('SUT: FormUserComponent', () => {
 
     // assert
     expect(sut.form.controls.id.value).not.toBe('')
-    expect(userDataService.addedUserData).toHaveBeenCalledWith(sut.form.value as IUser);
+    expect(userDataService.addedData).toHaveBeenCalledWith(sut.form.value as IUser);
     expect(router.navigate).toHaveBeenCalledWith(['/user']);
   });
 
@@ -106,11 +105,11 @@ describe('SUT: FormUserComponent', () => {
     sut.form.patchValue({ email: 'm@gmail.com' })
 
     // act
-    sut['addedUser']();
+    sut.addedItem()
 
     // assert
     expect(sut.form.valid).toBeFalsy()
-    expect(userDataService.addedUserData).not.toHaveBeenCalled();
+    expect(userDataService.addedData).not.toHaveBeenCalled();
   });
 
   it(`should be when submitting,if there is ID and the form updated and return to the previous page`, () => {
@@ -126,7 +125,7 @@ describe('SUT: FormUserComponent', () => {
     // assert
     expect(sut.form.controls.id.value).toBe('123')
     expect(sut.form.controls.lastName.value).toBe('m4')
-    expect(userDataService.editUserData).toHaveBeenCalledWith('123', sut.form.value as IUser);
+    expect(userDataService.editData).toHaveBeenCalledWith('123', sut.form.value as IUser);
     expect(router.navigate).toHaveBeenCalledWith(['/user']);
   });
 
@@ -135,10 +134,28 @@ describe('SUT: FormUserComponent', () => {
     sut.form.patchValue({ email: 'm@gmail.com' })
 
     // act
-    sut['editUser']();
+    sut.editItem()
 
     // assert
     expect(sut.form.valid).toBeFalsy()
-    expect(userDataService.editUserData).not.toHaveBeenCalled();
+    expect(userDataService.editData).not.toHaveBeenCalled();
   });
+
+  it('should be invalid for no navigate', () => {
+    // arrange
+    route.params = of({ id: '123' });
+    sut.isEditMode = true;
+
+    // act
+    sut.ngOnInit()
+    sut.form.patchValue({ lastName: null, firstName: 'k4' })
+    sut.submit()
+
+    // assert
+    expect(sut.form.invalid).toBeTruthy()
+    expect(router.navigate).not.toHaveBeenCalledWith(['/user'])
+    expect(sut.form.dirty).toBeTrue()
+    expect(sut.form.touched).toBeTrue();
+  });
+
 });

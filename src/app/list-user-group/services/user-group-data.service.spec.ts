@@ -18,7 +18,7 @@ describe('SUT:UserGroupDataService', () => {
         let actual: IUserGroup[] = []
 
         // act
-        sut.getAllUserGroupData().subscribe((res) => {
+        sut.getAllData().subscribe((res) => {
             actual = res;
         })
 
@@ -31,7 +31,7 @@ describe('SUT:UserGroupDataService', () => {
         let actual: IUserGroup[] = []
 
         // act
-        sut.deleteUserGroupData('userGroup_26_t').subscribe((res) => {
+        sut.deleteData('userGroup_26_t').subscribe((res) => {
             actual = res;
         })
 
@@ -47,7 +47,7 @@ describe('SUT:UserGroupDataService', () => {
         }
 
         // act
-        sut.addedUserGroupData(newUserGroup).subscribe((res) => {
+        sut.addedData(newUserGroup).subscribe((res) => {
             actual = res
         })
 
@@ -65,7 +65,7 @@ describe('SUT:UserGroupDataService', () => {
         const updateUserGroup: IUserGroup = { id: 'userGroup_23_k', description: 'test for description', name: 'mo2 ki2' }
 
         // act
-        sut.editUserGroupData('userGroup_23_k', updateUserGroup).subscribe((res) => {
+        sut.editData('userGroup_23_k', updateUserGroup).subscribe((res) => {
             actual = res;
         })
 

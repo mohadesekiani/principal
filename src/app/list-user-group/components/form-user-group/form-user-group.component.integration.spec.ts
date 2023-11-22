@@ -4,10 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormUserGroupComponent } from './form-user-group.component';
-import { AbstractUserGroupDataService } from '../../services/abstract-user-group-data.service';
 import { UserGroupDataService } from '../../services/user-group-data.service';
 import { TestUtil } from 'src/app/core-test/test-util';
 import { RouterTestingModule } from '@angular/router/testing';
+import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
 describe('SUT(Integration): FormUserGroupComponent', () => {
     let sut: FormUserGroupComponent;
     let fixture: ComponentFixture<FormUserGroupComponent>;
@@ -17,7 +17,7 @@ describe('SUT(Integration): FormUserGroupComponent', () => {
             declarations: [FormUserGroupComponent],
             providers: [
                 {
-                    provide: AbstractUserGroupDataService,
+                    provide: AbstractDataService,
                     useClass: UserGroupDataService,
                 }
             ],

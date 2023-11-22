@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AbstractUserGroupDataService } from '../../services/abstract-user-group-data.service';
 import { Router } from '@angular/router';
-import { IUserGroup } from 'src/app/core/model/interface/user-group.interface';
+import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
 import { UserGroupTableHeaderEnum } from 'src/app/core/model/enum/user-group-table-heder';
+import { IUserGroup } from 'src/app/core/model/interface/user-group.interface';
 
 @Component({
   selector: 'app-list-user-group',
@@ -18,7 +18,7 @@ export class ListUserGroupComponent {
   }));
 
 
-  constructor(private userGroupDataService: AbstractUserGroupDataService, private router: Router) {
+  constructor(private userGroupDataService: AbstractDataService<IUserGroup>, private router: Router) {
     if (!userGroupDataService) {
       throw 'userGroupDataService is empty'
     }
@@ -33,7 +33,7 @@ export class ListUserGroupComponent {
 
   private receivedAllData() {
     this.loading = true;
-    this.userGroupDataService.getAllUserGroupData().subscribe({
+    this.userGroupDataService.getAllData().subscribe({
       next: (res) => {
         this.allUserGroup = res
         this.loading = false
@@ -46,7 +46,7 @@ export class ListUserGroupComponent {
 
   deletedUserGroup(userGroupId: string) {
     this.loading = true;
-    this.userGroupDataService.deleteUserGroupData(userGroupId).subscribe({
+    this.userGroupDataService.deleteData(userGroupId).subscribe({
       next: () => {
         this.receivedAllData();
       },

@@ -4,9 +4,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TestUtil } from 'src/app/core-test/test-util';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AbstractUserDataService } from '../../services/abstract-user-data.service';
 import { UserDataService } from '../../services/user-data.service';
 import { FormUserComponent } from './form-user.component';
+import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
 
 describe('SUT(Integration): FormUserComponent', () => {
     let sut: FormUserComponent;
@@ -17,7 +17,7 @@ describe('SUT(Integration): FormUserComponent', () => {
             declarations: [FormUserComponent],
             providers: [
                 {
-                    provide: AbstractUserDataService,
+                    provide: AbstractDataService,
                     useClass: UserDataService,
                 }
             ],

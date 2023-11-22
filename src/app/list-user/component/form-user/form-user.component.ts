@@ -1,98 +1,41 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BaseFormOprCU } from 'src/app/core/base-classes/base-form-opr-c-u';
+import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
 import { IForm } from 'src/app/core/model/interface/form-type.interface';
 import { IUser } from 'src/app/core/model/interface/user.interface';
-import { AbstractUserDataService } from '../../services/abstract-user-data.service';
 @Component({
   selector: 'app-form-user',
   templateUrl: './form-user.component.html',
-  styleUrls: ['./form-user.component.sass']
+  styleUrls: ['./form-user.component.sass'],
 })
-export class FormUserComponent {
-  form!: FormGroup<IForm<IUser>>;
-  isEditMode: boolean = false;
-  itemId!: string;
+export class FormUserComponent extends BaseFormOprCU<IUser>{
+  protected override resultUrl = '/user'
+  override formConfig: IForm<IUser> = {
+    id: [null],
+    lastName: [null, Validators.required],
+    firstName: [null, Validators.required],
+    email: [null, [Validators.required, Validators.email]],
+    name: [null, Validators.required],
+    description: [null, Validators.required],
+  };
 
-  constructor(private fb: FormBuilder, private router: Router, private userDataService: AbstractUserDataService, private route: ActivatedRoute
-  ) {
-    if (!fb) {
-      throw 'FormBuilder is empty';
-    }
-    if (!router) {
-      throw 'router is empty';
-    }
-    if (!userDataService) {
-      throw 'userDataService is empty';
-    }
-    if (!route) {
-      throw 'route is empty';
-    }
+
+  constructor(router: Router, route: ActivatedRoute, dataService: AbstractDataService<IUser>) {
+    super(router, route, dataService);
   }
 
-  ngOnInit(): void {
-    this.form = this.createForm();
-    this.loadFormData()
+  override addedItem(): void {
+    this.form.patchValue({ id: this.setId() });
+    super.addedItem()
   }
-
-  private createForm() {
-    return this.fb.group<IForm<IUser>>({
-      id: [null],
-      lastName: [null, Validators.required],
-      firstName: [null, Validators.required],
-      email: [null, [Validators.required, Validators.email]],
-      name: [null, Validators.required],
-      description: [null, Validators.required],
-    })
-  }
-
-  private loadFormData() {
-    this.route.params.subscribe(params => {
-      if (!params['id']) { return; }
-      this.isEditMode = true;
-      this.itemId = params['id']
-      this.userDataService.getByID(this.itemId).subscribe(data => {
-        this.form.patchValue(data);
-      });
-    });
-  }
-
-  private userId() {
+  // todo ?
+  private setId() {
     const randomNumber = Math.floor(Math.random() * 100) + 1;
     const randomChar = String.fromCharCode(Math.floor(Math.random() * 26) + 65);
     const timestamp = new Date().getTime();
     return `user_${randomNumber}_${randomChar}_${timestamp}`;
   }
 
-  submit() {
-    if (this.isEditMode) {
-      this.editUser()
-
-    } else {
-      this.addedUser()
-    }
-  }
-
-  private addedUser() {
-    this.form.patchValue({ id: this.userId() })
-    if (!this.form.valid) {
-      return;
-    }
-    this.userDataService.addedUserData(this.form.value as IUser).subscribe({
-      next: (res) => { }
-    })
-    this.router.navigate(['/user'])
-
-  }
-
-  private editUser() {
-    if (!this.form.valid) {
-      return;
-    }
-    this.userDataService.editUserData(this.itemId, this.form.value as IUser).subscribe({
-      next: (res) => {
-      }
-    })
-    this.router.navigate(['/user'])
-  }
 }

@@ -1,14 +1,14 @@
 import { Router } from "@angular/router";
 import { ListUserGroupComponent } from "./list-user-group.component";
-import { AbstractUserGroupDataService } from "../../services/abstract-user-group-data.service";
 import { IUserGroup } from "src/app/core/model/interface/user-group.interface";
 import { of } from "rxjs";
 import { UserGroupTableHeaderEnum } from "src/app/core/model/enum/user-group-table-heder";
+import { AbstractDataService } from "src/app/core/base-services/abstract-data-service";
 
 describe('SUT: ListUserGroupComponent', () => {
   let sut: ListUserGroupComponent;
   let router: jasmine.SpyObj<Router>;
-  let userGroupDataService: jasmine.SpyObj<AbstractUserGroupDataService>;
+  let userGroupDataService: jasmine.SpyObj<AbstractDataService<IUserGroup>>;
   const fakeUserGroups: IUserGroup[] = [
     {
       id: 'userGroup_23_k', description: 'test for description', name: 'm1 k1'
@@ -18,9 +18,9 @@ describe('SUT: ListUserGroupComponent', () => {
     },
   ];
   beforeEach(() => {
-    userGroupDataService = jasmine.createSpyObj<AbstractUserGroupDataService>({
-      getAllUserGroupData: of(fakeUserGroups),
-      deleteUserGroupData: of(fakeUserGroups),
+    userGroupDataService = jasmine.createSpyObj<AbstractDataService<IUserGroup>>({
+      getAllData: of(fakeUserGroups),
+      deleteData: of(fakeUserGroups),
     });
     router = jasmine.createSpyObj<Router>('Router', ['navigate']) as any;
     sut = new ListUserGroupComponent(userGroupDataService, router);
@@ -47,26 +47,26 @@ describe('SUT: ListUserGroupComponent', () => {
 
   it('should be all data returned when the data service is called', () => {
     // assert
-    expect(userGroupDataService.getAllUserGroupData).toHaveBeenCalled()
+    expect(userGroupDataService.getAllData).toHaveBeenCalled()
     expect(sut.allUserGroup).toEqual(fakeUserGroups)
     expect(sut.loading).toBe(false)
   });
 
   it('should be the desired line deleted when the delete button is click', () => {
     // arrange
-    userGroupDataService.getAllUserGroupData.and.returnValues(of([fakeUserGroups[0]]));
+    userGroupDataService.getAllData.and.returnValues(of([fakeUserGroups[0]]));
 
     // act
     sut.deletedUserGroup('userGroup_23_k');
 
     // assert
-    expect(userGroupDataService.deleteUserGroupData).toHaveBeenCalledWith('userGroup_23_k')
-    expect(userGroupDataService.getAllUserGroupData).toHaveBeenCalled();
+    expect(userGroupDataService.deleteData).toHaveBeenCalledWith('userGroup_23_k')
+    expect(userGroupDataService.getAllData).toHaveBeenCalled();
     expect(sut.allUserGroup).toEqual([fakeUserGroups[0]]);
     expect(sut.loading).toBe(false);
   });
 
-  
+
   it('should be when the edit button is clicked, it will go to the edit form with the userGroup ID', () => {
     // act
     sut.editUserGroup('userGroup_23_k')

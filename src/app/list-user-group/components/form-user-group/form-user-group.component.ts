@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AbstractUserGroupDataService } from '../../services/abstract-user-group-data.service';
 import { IForm } from 'src/app/core/model/interface/form-type.interface';
 import { IUserGroup } from 'src/app/core/model/interface/user-group.interface';
+import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
 
 @Component({
   selector: 'app-form-user-group',
@@ -15,7 +15,7 @@ export class FormUserGroupComponent {
   isEditMode: boolean = false;
   itemId!: string;
 
-  constructor(private fb: FormBuilder, private router: Router, private userGroupDataService: AbstractUserGroupDataService, private route: ActivatedRoute
+  constructor(private fb: FormBuilder, private router: Router, private userGroupDataService: AbstractDataService<IUserGroup>, private route: ActivatedRoute
   ) {
     if (!fb) {
       throw 'FormBuilder is empty';
@@ -55,6 +55,14 @@ export class FormUserGroupComponent {
   }
 
   submit() {
+    if (this.form.invalid) {
+      this.form.markAsDirty();
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.router.navigate(['/user-group'])
+
     if (this.isEditMode) {
       this.editUserGroup()
 
@@ -68,10 +76,9 @@ export class FormUserGroupComponent {
     if (!this.form.valid) {
       return;
     }
-    this.userGroupDataService.addedUserGroupData(this.form.value as IUserGroup).subscribe({
+    this.userGroupDataService.addedData(this.form.value as IUserGroup).subscribe({
       next: (res) => { }
     })
-    this.router.navigate(['/user-group'])
 
   }
 
@@ -79,11 +86,10 @@ export class FormUserGroupComponent {
     if (!this.form.valid) {
       return;
     }
-    this.userGroupDataService.editUserGroupData(this.itemId, this.form.value as IUserGroup).subscribe({
+    this.userGroupDataService.editData(this.itemId, this.form.value as IUserGroup).subscribe({
       next: (res) => {
       }
     })
-    this.router.navigate(['/user-group'])
   }
 
   private userGroupId() {

@@ -17,7 +17,7 @@ describe('SUT: UserDataService', () => {
         let actual: IUser[] = []
 
         // act
-        sut.getAllUserData().subscribe((res) => {
+        sut.getAllData().subscribe((res) => {
             actual = res;
         })
 
@@ -30,7 +30,7 @@ describe('SUT: UserDataService', () => {
         let actual: IUser[] = []
 
         // act
-        sut.deleteUserData('315768d5').subscribe((res) => {
+        sut.deleteData('315768d5').subscribe((res) => {
             actual = res;
         })
 
@@ -46,7 +46,7 @@ describe('SUT: UserDataService', () => {
         }
 
         // act
-        sut.addedUserData(newUser).subscribe((res) => {
+        sut.addedData(newUser).subscribe((res) => {
             actual = res
         })
 
@@ -58,13 +58,14 @@ describe('SUT: UserDataService', () => {
         ]);
     });
 
-    it('should be updated user information', () => {
+    fit('should be updated user information', () => {
         // arrange
+        debugger
         let actual: IUser[] = []
         const updateUser: IUser = { id: '315768d5', firstName: 'mo2', lastName: 'ki2', email: 'm1@gmail.com', description: 'test for description', name: 'mo2 ki2' }
 
         // act
-        sut.editUserData('315768d5', updateUser).subscribe((res) => {
+        sut.editData('315768d5', updateUser).subscribe((res) => {
             actual = res;
         })
 

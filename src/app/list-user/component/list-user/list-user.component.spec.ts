@@ -1,24 +1,24 @@
 
+import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
+import { UserTableHeaderEnum } from 'src/app/core/model/enum/user-table-heder';
 import { IUser } from 'src/app/core/model/interface/user.interface';
 import { ListUserComponent } from './list-user.component';
-import { AbstractUserDataService } from '../../services/abstract-user-data.service';
-import { of } from 'rxjs';
-import { Router } from '@angular/router';
-import { UserTableHeaderEnum } from 'src/app/core/model/enum/user-table-heder';
 
 describe('SUT: ListUserComponent', () => {
   let sut: ListUserComponent;
   let router: jasmine.SpyObj<Router>;
-  let userDataService: jasmine.SpyObj<AbstractUserDataService>;
+  let userDataService: jasmine.SpyObj<AbstractDataService<IUser>>;
   const fakeUsers: IUser[] = [
     { id: '315768d5', firstName: 'm1', lastName: 'k1', email: 'm1@gmail.com', description: 'test for description', name: 'm1 k1' },
     { id: 'a096aae1', firstName: 'm2', lastName: 'k2', email: 'm2@gmail.com', description: 'test for description', name: 'm2 k2' },
   ];
 
   beforeEach(() => {
-    userDataService = jasmine.createSpyObj<AbstractUserDataService>({
-      getAllUserData: of(fakeUsers),
-      deleteUserData: of(fakeUsers),
+    userDataService = jasmine.createSpyObj<AbstractDataService<IUser>>({
+      getAllData: of(fakeUsers),
+      deleteData: of(fakeUsers),
     });
     router = jasmine.createSpyObj<Router>('Router', ['navigate']) as any;
     sut = new ListUserComponent(userDataService, router);
@@ -48,21 +48,21 @@ describe('SUT: ListUserComponent', () => {
   });
   it('should be all data returned when the data service is called', () => {
     // assert
-    expect(userDataService.getAllUserData).toHaveBeenCalled()
+    expect(userDataService.getAllData).toHaveBeenCalled()
     expect(sut.allUser).toEqual(fakeUsers)
     expect(sut.loading).toBe(false)
   });
 
   it('should be the desired line deleted when the delete button is click', () => {
     // arrange
-    userDataService.getAllUserData.and.returnValues(of([fakeUsers[0]]));
+    userDataService.getAllData.and.returnValues(of([fakeUsers[0]]));
 
     // act
     sut.deletedUser('315768d5');
 
     // assert
-    expect(userDataService.deleteUserData).toHaveBeenCalledWith('315768d5')
-    expect(userDataService.getAllUserData).toHaveBeenCalled();
+    expect(userDataService.deleteData).toHaveBeenCalledWith('315768d5')
+    expect(userDataService.getAllData).toHaveBeenCalled();
     expect(sut.allUser).toEqual([fakeUsers[0]]);
     expect(sut.loading).toBe(false);
   });

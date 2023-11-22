@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { AbstractUserDataService } from '../../services/abstract-user-data.service';
-import { IUser } from 'src/app/core/model/interface/user.interface';
 import { Router } from '@angular/router';
+import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
 import { UserTableHeaderEnum } from 'src/app/core/model/enum/user-table-heder';
+import { IUser } from 'src/app/core/model/interface/user.interface';
 
 @Component({
   selector: 'app-list-user',
   templateUrl: './list-user.component.html',
-  styleUrls: ['./list-user.component.sass']
+  styleUrls: ['./list-user.component.sass'],
 })
 export class ListUserComponent {
   loading = false;
@@ -18,7 +18,7 @@ export class ListUserComponent {
   }));
 
 
-  constructor(private userDataService: AbstractUserDataService, private router: Router) {
+  constructor(private userDataService: AbstractDataService<IUser>, private router: Router) {
     if (!userDataService) {
       throw 'userDataService is empty'
     }
@@ -34,8 +34,10 @@ export class ListUserComponent {
 
   private receivedAllData() {
     this.loading = true;
-    this.userDataService.getAllUserData().subscribe({
+    this.userDataService.getAllData().subscribe({
       next: (res) => {
+        console.log('all', res);
+
         this.allUser = res
         this.loading = false
       },
@@ -48,7 +50,7 @@ export class ListUserComponent {
 
   deletedUser(userId: string) {
     this.loading = true;
-    this.userDataService.deleteUserData(userId).subscribe({
+    this.userDataService.deleteData(userId).subscribe({
       next: () => {
         this.receivedAllData();
       },
@@ -66,7 +68,7 @@ export class ListUserComponent {
     this.router.navigate(['/user/new']);
   }
 
-  isAllData(){
+  isAllData() {
     return this.allUser.length > 0
   }
 }
