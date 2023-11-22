@@ -1,1 +1,17 @@
-<p>form-user-group works!</p>
+<form [formGroup]="form"
+      (submit)="(submit)">
+    <mat-form-field>
+        <mat-label>Enter your Name</mat-label>
+        <input matInput
+               formControlName="name"
+               id="name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Enter your description</mat-label>
+        <input matInput
+               formControlName="description"
+               id="description">
+    </mat-form-field>
+    <button (click)="submit()"
+            id="submit">{{isEditMode ? 'update' :'add'}}</button>
+</form>

@@ -57,6 +57,8 @@ describe('SUT: FormUserComponent', () => {
     expect(sut.form.controls.lastName.hasError('required')).toBeTruthy()
     expect(sut.form.controls.firstName.hasError('required')).toBeTruthy()
     expect(sut.form.controls.email.hasError('required')).toBeTruthy()
+    expect(sut.form.controls.name.hasError('required')).toBeTruthy()
+    expect(sut.form.controls.description.hasError('required')).toBeTruthy()
   });
 
   it(`should be have an error 'email' if it doesn't have the email format`, () => {

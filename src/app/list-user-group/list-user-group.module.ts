@@ -7,12 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
-  declarations: [
-    FormUserGroupComponent,
-    ListUserGroupComponent
-  ],
-  imports: [
-    CommonModule,SharedModule
-  ]
+  declarations: [FormUserGroupComponent, ListUserGroupComponent],
+  imports: [CommonModule, SharedModule]
 })
 export class ListUserGroupModule { }
