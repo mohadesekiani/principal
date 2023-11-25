@@ -28,7 +28,7 @@ export class UserGroupDataService extends AbstractDataService<IUserGroup> {
     editData(userGroupId: string, updatedUserData: IUserGroup): Observable<any> {
         const userIndex = this.myData.findIndex(userGroup => userGroup.id === userGroupId);
         this.myData[userIndex] = { ...this.myData[userIndex], ...updatedUserData, id: this.myData[userIndex].id };
-        return of(this.myData[userIndex]);
+        return of(this.myData);
     }
 
     getByID(userGroupId: string): Observable<any> {
@@ -37,11 +37,11 @@ export class UserGroupDataService extends AbstractDataService<IUserGroup> {
         );
     }
 
-    setId(): Observable<any> {
+    setId(): string {
         const randomNumber = Math.floor(Math.random() * 100) + 1;
         const randomChar = String.fromCharCode(Math.floor(Math.random() * 26) + 65);
         const timestamp = new Date().getTime();
-        return of(`userGroup_${randomNumber}_${randomChar}_${timestamp}`);
+        return `userGroup_${randomNumber}_${randomChar}_${timestamp}`;
 
     }
 }

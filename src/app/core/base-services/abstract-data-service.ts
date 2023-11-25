@@ -6,5 +6,5 @@ export abstract class AbstractDataService<T> {
     abstract addedData(newData: T): Observable<any>;
     abstract getByID(id: string): Observable<any>;
     abstract editData(id: string, updatedData: T): Observable<any>;
-    abstract setId(): Observable<any>;
+    abstract setId(): string;
 }

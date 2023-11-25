@@ -1,5 +1,4 @@
 
-import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
@@ -8,7 +7,6 @@ import * as fakeData from '../../services/mock-data/index';
 import { FormUserComponent } from './form-user.component';
 describe('SUT: FormUserComponent', () => {
   let sut: FormUserComponent;
-  // let fb: FormBuilder;
   let router: jasmine.SpyObj<Router>;
   let route: jasmine.SpyObj<ActivatedRoute>;
   let userDataService: jasmine.SpyObj<AbstractDataService<IUser>>;
@@ -22,9 +20,8 @@ describe('SUT: FormUserComponent', () => {
       editData: of({
         id: '123', lastName: 'm3', firstName: 'k3', email: 'john.doe@example.com', description: 'test for description', name: 'm3 k3'
       }),
-      setId:of('user_123_y')
+      setId:'user_123_y'
     });
-    // fb = new FormBuilder();
     router = jasmine.createSpyObj<Router>('Router', ['navigate']) as any;
     route = { params: jasmine.createSpyObj('params', ['subscribe']) } as jasmine.SpyObj<ActivatedRoute>;
     sut = new FormUserComponent(router, route, userDataService);

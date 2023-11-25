@@ -21,12 +21,14 @@ describe('SUT: FormUserGroupComponent', () => {
       }),
       editData: of({
         id: '123', description: 'test for description', name: 'm3 k3'
-      })
+      }),
+      setId:'userGroup_123_y'
+
     });
     fb = new FormBuilder();
     router = jasmine.createSpyObj<Router>('Router', ['navigate']) as any;
     route = { params: jasmine.createSpyObj('params', ['subscribe']) } as jasmine.SpyObj<ActivatedRoute>;
-    sut = new FormUserGroupComponent(fb, router, userGroupDataService, route);
+    sut = new FormUserGroupComponent(router, route, userGroupDataService);
     sut.ngOnInit()
   });
 
@@ -37,10 +39,9 @@ describe('SUT: FormUserGroupComponent', () => {
 
   it('should be throw exception with null FormBuilder and router and userGroupDataService and route', () => {
     // assert
-    expect(() => new FormUserGroupComponent(null as any, router, userGroupDataService, route)).toThrow('FormBuilder is empty')
-    expect(() => new FormUserGroupComponent(fb, null as any, userGroupDataService, route)).toThrow('router is empty')
-    expect(() => new FormUserGroupComponent(fb, router, null as any, route)).toThrow('userGroupDataService is empty')
-    expect(() => new FormUserGroupComponent(fb, router, userGroupDataService, null as any)).toThrow('route is empty')
+    expect(() => new FormUserGroupComponent(null as any, route, userGroupDataService)).toThrowError('router is null')
+    expect(() => new FormUserGroupComponent(router, route, null as any)).toThrowError('dataService is null')
+    expect(() => new FormUserGroupComponent(router, null as any, userGroupDataService)).toThrowError('route is null')
   });
 
   it('should be create properly', () => {
@@ -95,7 +96,7 @@ describe('SUT: FormUserGroupComponent', () => {
     sut.form.patchValue({ name: 'm3 k3' })
 
     // act
-    sut['addedUserGroup']();
+    sut.addedItem();
 
     // assert
     expect(sut.form.valid).toBeFalsy()
@@ -124,7 +125,7 @@ describe('SUT: FormUserGroupComponent', () => {
     sut.form.patchValue({ description: 'test for des' })
 
     // act
-    sut['editUserGroup']();
+    sut.editItem()
 
     // assert
     expect(sut.form.valid).toBeFalsy()

@@ -23,7 +23,7 @@ describe('SUT: ListUserGroupComponent', () => {
       deleteData: of(fakeUserGroups),
     });
     router = jasmine.createSpyObj<Router>('Router', ['navigate']) as any;
-    sut = new ListUserGroupComponent(userGroupDataService, router);
+    sut = new ListUserGroupComponent(router, userGroupDataService);
     sut.ngOnInit();
   });
 
@@ -35,20 +35,20 @@ describe('SUT: ListUserGroupComponent', () => {
   it('should be create properly', () => {
     // assert
     expect(sut.loading).toBeFalsy()
-    expect(sut.allUserGroup).toEqual(fakeUserGroups)
+    expect(sut.allData).toEqual(fakeUserGroups)
     expect(sut.itemHeader).toEqual([{ title: 'Name', value: UserGroupTableHeaderEnum.Name }, { title: 'Description', value: UserGroupTableHeaderEnum.Description }, { title: 'Opr', value: UserGroupTableHeaderEnum.Opr }])
   });
 
   it('should be throw exception with null userGroupDataService', () => {
     // assert
-    expect(() => new ListUserGroupComponent(null as any, router)).toThrow('userGroupDataService is empty')
-    expect(() => new ListUserGroupComponent(userGroupDataService, null as any)).toThrow('router is empty')
+    expect(() => new ListUserGroupComponent(router, null as any)).toThrowError('dataService is null')
+    expect(() => new ListUserGroupComponent(null as any, userGroupDataService)).toThrowError('router is null')
   });
 
   it('should be all data returned when the data service is called', () => {
     // assert
     expect(userGroupDataService.getAllData).toHaveBeenCalled()
-    expect(sut.allUserGroup).toEqual(fakeUserGroups)
+    expect(sut.allData).toEqual(fakeUserGroups)
     expect(sut.loading).toBe(false)
   });
 
@@ -57,19 +57,19 @@ describe('SUT: ListUserGroupComponent', () => {
     userGroupDataService.getAllData.and.returnValues(of([fakeUserGroups[0]]));
 
     // act
-    sut.deletedUserGroup('userGroup_23_k');
+    sut.deletedItem('userGroup_23_k');
 
     // assert
     expect(userGroupDataService.deleteData).toHaveBeenCalledWith('userGroup_23_k')
     expect(userGroupDataService.getAllData).toHaveBeenCalled();
-    expect(sut.allUserGroup).toEqual([fakeUserGroups[0]]);
+    expect(sut.allData).toEqual([fakeUserGroups[0]]);
     expect(sut.loading).toBe(false);
   });
 
 
   it('should be when the edit button is clicked, it will go to the edit form with the userGroup ID', () => {
     // act
-    sut.editUserGroup('userGroup_23_k')
+    sut.editItem('userGroup_23_k')
 
     // assert
     expect(router.navigate).toHaveBeenCalledWith(['/user-group/', 'userGroup_23_k']);
@@ -77,7 +77,7 @@ describe('SUT: ListUserGroupComponent', () => {
 
   it('should be when the add button is clicked ,go to the add new userGroup form', () => {
     // act
-    sut.addedUserGroup()
+    sut.addedItem()
 
     // assert
     expect(router.navigate).toHaveBeenCalledWith(['/user-group/new']);

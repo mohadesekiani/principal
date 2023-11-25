@@ -37,12 +37,12 @@ export class UserDataService extends AbstractDataService<IUser> {
             first()
         );
     }
-    // استفاده نشده todo
-    setId(): Observable<any> {
+
+    setId(): string {
         const randomNumber = Math.floor(Math.random() * 100) + 1;
         const randomChar = String.fromCharCode(Math.floor(Math.random() * 26) + 65);
         const timestamp = new Date().getTime();
-        return of(`userGroup_${randomNumber}_${randomChar}_${timestamp}`);
+        return `userGroup_${randomNumber}_${randomChar}_${timestamp}`;
 
     }
 }

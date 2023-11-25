@@ -1,7 +1,7 @@
 <div>
     <div>
         <h3> list user group </h3>
-        <button (click)="addedUserGroup()"
+        <button (click)="addedItem()"
                 id="add">add +</button>
     </div>
     <div *ngIf="isAllData()">
@@ -9,14 +9,14 @@
             <tr>
                 <th *ngFor="let item of itemHeader">{{item.title}}</th>
             </tr>
-            <tr *ngFor="let item of allUserGroup">
+            <tr *ngFor="let item of allData">
                 <td>{{item.name}}</td>
                 <td>{{item.description}}</td>
                 <td>
                     <mat-icon id="delete"
-                              (click)="deletedUserGroup(item.id)">delete</mat-icon>
+                              (click)="deletedItem(item.id)">delete</mat-icon>
                     <mat-icon id="edit"
-                              (click)="editUserGroup(item.id)">edit</mat-icon>
+                              (click)="editItem(item.id)">edit</mat-icon>
                 </td>
             </tr>
         </table>

@@ -33,37 +33,37 @@ describe('SUT(Integration): ListUserGroupComponent', () => {
     it('should be called the addedUserGroup function when the button is clicked', () => {
         // arrange
         const addEl: HTMLButtonElement = TestUtil.nativeElement(fixture, '#add')
-        spyOn(sut, 'addedUserGroup');
+        spyOn(sut, 'addedItem');
 
         // action
         addEl.click();
 
         // assert
-        expect(sut.addedUserGroup).toHaveBeenCalled();
+        expect(sut.addedItem).toHaveBeenCalled();
     });
 
     it('should be called the deletedUserGroup function when the button is clicked', () => {
         // arrange
         const deleteEl: HTMLButtonElement = TestUtil.nativeElement(fixture, '#delete')
-        spyOn(sut, 'deletedUserGroup');
+        spyOn(sut, 'deletedItem');
 
         // action
         deleteEl.click();
 
         // assert
-        expect(sut.deletedUserGroup).toHaveBeenCalled();
+        expect(sut.deletedItem).toHaveBeenCalled();
     });
 
     it('should be called the editUserGroup function when the button is clicked', () => {
         // arrange
         const editEl: HTMLButtonElement = TestUtil.nativeElement(fixture, '#edit')
-        spyOn(sut, 'editUserGroup');
+        spyOn(sut, 'editItem');
 
         // action
         editEl.click();
 
         // assert
-        expect(sut.editUserGroup).toHaveBeenCalled();
+        expect(sut.editItem).toHaveBeenCalled();
     });
 
     it('should be true when the value of allData is greater than zero', () => {
