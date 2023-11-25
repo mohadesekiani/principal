@@ -58,9 +58,8 @@ describe('SUT: UserDataService', () => {
         ]);
     });
 
-    fit('should be updated user information', () => {
+    it('should be updated user information', () => {
         // arrange
-        debugger
         let actual: IUser[] = []
         const updateUser: IUser = { id: '315768d5', firstName: 'mo2', lastName: 'ki2', email: 'm1@gmail.com', description: 'test for description', name: 'mo2 ki2' }
 

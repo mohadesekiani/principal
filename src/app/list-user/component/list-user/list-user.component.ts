@@ -36,8 +36,6 @@ export class ListUserComponent {
     this.loading = true;
     this.userDataService.getAllData().subscribe({
       next: (res) => {
-        console.log('all', res);
-
         this.allUser = res
         this.loading = false
       },

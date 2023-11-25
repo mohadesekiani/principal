@@ -10,8 +10,8 @@ export abstract class BaseFormOprCU<T> extends BaseForm<T>{
 
     constructor(router: Router, protected route: ActivatedRoute, protected dataService: AbstractDataService<T>) {
         super(router);
-        if (!route) { throw 'route is null'; }
-        if (!dataService) { throw 'dataService is null'; }
+        if (!route) { throw new Error('route is null'); }
+        if (!dataService) { throw new Error( 'dataService is null'); }
     }
 
     override ngOnInit(): void {
@@ -20,6 +20,9 @@ export abstract class BaseFormOprCU<T> extends BaseForm<T>{
     }
     override submit(): void {
         super.submit();
+        if (!this.form.valid) {
+            return
+        }
         this.manageComponent()
         this.router.navigate([this.resultUrl]);
     }
@@ -57,12 +60,8 @@ export abstract class BaseFormOprCU<T> extends BaseForm<T>{
         if (!this.form.valid) {
             return;
         }
-        console.log('kkk',this.form.value);
-        
         this.dataService.editData(this.itemId, this.form.value as T).subscribe({
             next: (res) => {
-                console.log('res',res);
-                
             }
         })
     }

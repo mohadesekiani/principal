@@ -5,7 +5,7 @@ import { AbstractDataService } from "src/app/core/base-services/abstract-data-se
 
 
 export class UserDataService extends AbstractDataService<IUser> {
-    private myData:IUser[] = [...fakeData.users];
+    private myData: IUser[] = [...fakeData.users];
 
     constructor() {
         super();
@@ -29,8 +29,6 @@ export class UserDataService extends AbstractDataService<IUser> {
     editData(userId: string, updatedUserData: IUser): Observable<any> {
         const userIndex = this.myData.findIndex(user => user.id === userId);
         this.myData[userIndex] = { ...this.myData[userIndex], ...updatedUserData, id: this.myData[userIndex].id };
-        console.log('mmm', this.myData[userIndex]);
-        
         return of(this.myData);
     }
 

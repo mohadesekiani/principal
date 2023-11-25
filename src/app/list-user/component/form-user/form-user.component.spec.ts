@@ -8,7 +8,7 @@ import * as fakeData from '../../services/mock-data/index';
 import { FormUserComponent } from './form-user.component';
 describe('SUT: FormUserComponent', () => {
   let sut: FormUserComponent;
-  let fb: FormBuilder;
+  // let fb: FormBuilder;
   let router: jasmine.SpyObj<Router>;
   let route: jasmine.SpyObj<ActivatedRoute>;
   let userDataService: jasmine.SpyObj<AbstractDataService<IUser>>;
@@ -21,9 +21,10 @@ describe('SUT: FormUserComponent', () => {
       }),
       editData: of({
         id: '123', lastName: 'm3', firstName: 'k3', email: 'john.doe@example.com', description: 'test for description', name: 'm3 k3'
-      })
+      }),
+      setId:of('user_123_y')
     });
-    fb = new FormBuilder();
+    // fb = new FormBuilder();
     router = jasmine.createSpyObj<Router>('Router', ['navigate']) as any;
     route = { params: jasmine.createSpyObj('params', ['subscribe']) } as jasmine.SpyObj<ActivatedRoute>;
     sut = new FormUserComponent(router, route, userDataService);
@@ -35,11 +36,11 @@ describe('SUT: FormUserComponent', () => {
     expect(sut).toBeTruthy();
   });
 
-  it('should be throw exception with null FormBuilder and router and userDataService and route', () => {
+  it('should be throw exception with null router and userDataService and route', () => {
     // assert
-    expect(() => new FormUserComponent(null as any, route, userDataService)).toThrow('router is empty')
-    expect(() => new FormUserComponent(router, route, null as any)).toThrow('userDataService is empty')
-    expect(() => new FormUserComponent(router, null as any, userDataService)).toThrow('route is empty')
+    expect(() => new FormUserComponent(null as any, route, userDataService)).toThrowError('router is null')
+    expect(() => new FormUserComponent(router, route, null as any)).toThrowError('dataService is null')
+    expect(() => new FormUserComponent(router, null as any, userDataService)).toThrowError('route is null')
   });
 
   it('should be create properly', () => {

@@ -27,15 +27,8 @@ export class FormUserComponent extends BaseFormOprCU<IUser>{
   }
 
   override addedItem(): void {
-    this.form.patchValue({ id: this.setId() });
+    this.form.patchValue({ id: this.dataService.setId() });
     super.addedItem()
-  }
-  // todo ?
-  private setId() {
-    const randomNumber = Math.floor(Math.random() * 100) + 1;
-    const randomChar = String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-    const timestamp = new Date().getTime();
-    return `user_${randomNumber}_${randomChar}_${timestamp}`;
   }
 
 }

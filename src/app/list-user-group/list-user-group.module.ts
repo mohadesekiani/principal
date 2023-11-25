@@ -10,10 +10,6 @@ import { ListUserGroupComponent } from './components/list-user-group/list-user-g
   declarations: [FormUserGroupComponent, ListUserGroupComponent],
   imports: [CommonModule, SharedModule],
   providers: [
-    // {
-    //   provide: AbstractDataService<IUserGroup>,
-    //   useClass: UserGroupDataService,
-    // },
   ],
 })
 export class ListUserGroupModule { }

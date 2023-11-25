@@ -12,7 +12,7 @@ export abstract class BaseForm<T>{
     protected fb = new FormBuilder();
 
     constructor(protected router: Router) {
-        if (!router) { throw 'router is null'; }
+        if (!router) { throw new Error( 'router is null'); }
     }
 
     ngOnInit() {
