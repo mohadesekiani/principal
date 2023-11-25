@@ -7,6 +7,7 @@ export abstract class BaseFormOprCU<T> extends BaseForm<T>{
     isEditMode = false
     itemId!: string;
     protected resultUrl!: string;
+    entity?: T;
 
     constructor(router: Router, protected route: ActivatedRoute, protected dataService: AbstractDataService<T>) {
         super(router);
