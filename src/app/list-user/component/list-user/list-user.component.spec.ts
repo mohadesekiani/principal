@@ -21,7 +21,7 @@ describe('SUT: ListUserComponent', () => {
       deleteData: of(fakeUsers),
     });
     router = jasmine.createSpyObj<Router>('Router', ['navigate']) as any;
-    sut = new ListUserComponent(userDataService, router);
+    sut = new ListUserComponent(router, userDataService);
     sut.ngOnInit();
   });
 
@@ -33,23 +33,21 @@ describe('SUT: ListUserComponent', () => {
   it('should be create properly', () => {
     // assert
     expect(sut.loading).toBeFalsy()
-    expect(sut.allUser).toEqual(fakeUsers)
+    expect(sut.allData).toEqual(fakeUsers)
     expect(sut.itemHeader).toEqual([{ title: 'Name', value: UserTableHeaderEnum.Name }, { title: 'Description', value: UserTableHeaderEnum.Description }, { title: 'First Name', value: UserTableHeaderEnum.FirstName }, { title: 'Last Name', value: UserTableHeaderEnum.LastName }, { title: 'Email', value: UserTableHeaderEnum.Email }, { title: 'Opr', value: UserTableHeaderEnum.Opr }])
   });
 
-  it('should be throw exception with null userDataService', () => {
-    // assert
-    expect(() => new ListUserComponent(null as any, router)).toThrow('userDataService is empty')
-  });
 
-  it('should be throw exception with null router', () => {
+
+  it('should be throw exception with null router,dataService', () => {
     // assert
-    expect(() => new ListUserComponent(userDataService, null as any)).toThrow('router is empty')
+    expect(() => new ListUserComponent(router, null as any)).toThrowError('dataService is null')
+    expect(() => new ListUserComponent(null as any, userDataService)).toThrowError('router is null')
   });
   it('should be all data returned when the data service is called', () => {
     // assert
     expect(userDataService.getAllData).toHaveBeenCalled()
-    expect(sut.allUser).toEqual(fakeUsers)
+    expect(sut.allData).toEqual(fakeUsers)
     expect(sut.loading).toBe(false)
   });
 
@@ -58,18 +56,18 @@ describe('SUT: ListUserComponent', () => {
     userDataService.getAllData.and.returnValues(of([fakeUsers[0]]));
 
     // act
-    sut.deletedUser('315768d5');
+    sut.deletedItem('315768d5');
 
     // assert
     expect(userDataService.deleteData).toHaveBeenCalledWith('315768d5')
     expect(userDataService.getAllData).toHaveBeenCalled();
-    expect(sut.allUser).toEqual([fakeUsers[0]]);
+    expect(sut.allData).toEqual([fakeUsers[0]]);
     expect(sut.loading).toBe(false);
   });
 
   it('should be when the edit button is clicked, it will go to the edit form with the user ID', () => {
     // act
-    sut.editUser('315768d5')
+    sut.editItem('315768d5')
 
     // assert
     expect(router.navigate).toHaveBeenCalledWith(['/user/', '315768d5']);
@@ -77,7 +75,7 @@ describe('SUT: ListUserComponent', () => {
 
   it('should be when the add button is clicked ,go to the add new user form', () => {
     // act
-    sut.addedUser()
+    sut.addedItem()
 
     // assert
     expect(router.navigate).toHaveBeenCalledWith(['/user/new']);
