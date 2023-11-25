@@ -9,12 +9,12 @@ import { IUser } from '../core/model/interface/user.interface';
 
 @NgModule({
   declarations: [ListUserComponent, FormUserComponent],
-  imports: [CommonModule,SharedModule],
+  imports: [CommonModule, SharedModule],
   providers: [
-    {
-      provide: AbstractDataService<IUser>,
-      useClass: UserDataService,
-    },
+    // {
+    //   provide: AbstractDataService<IUser>,
+    //   useClass: UserDataService,
+    // },
   ],
 })
 export class ListUserModule {}

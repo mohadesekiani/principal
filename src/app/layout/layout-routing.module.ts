@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       {
         path: 'user',
-        component: ListUserComponent
+        component: ListUserComponent,
       },
       { path: 'user/new', component: FormUserComponent },
       { path: 'user/:id', component: FormUserComponent },
@@ -25,7 +25,7 @@ const routes: Routes = [
     children: [
       {
         path: 'user-group',
-        component: ListUserGroupComponent
+        component: ListUserGroupComponent,
       },
       { path: 'user-group/new', component: FormUserGroupComponent },
       { path: 'user-group/:id', component: FormUserGroupComponent },
@@ -37,4 +37,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class LayoutRoutingModule { }
+export class LayoutRoutingModule {}

@@ -5,13 +5,20 @@ import { BaseFormOprCU } from 'src/app/core/base-classes/base-form-opr-c-u';
 import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
 import { IForm } from 'src/app/core/model/interface/form-type.interface';
 import { IUser } from 'src/app/core/model/interface/user.interface';
+import { UserDataService } from '../../services/user-data.service';
 @Component({
   selector: 'app-form-user',
   templateUrl: './form-user.component.html',
   styleUrls: ['./form-user.component.sass'],
+  providers: [
+    {
+      provide: AbstractDataService,
+      useExisting: UserDataService,
+    },
+  ],
 })
-export class FormUserComponent extends BaseFormOprCU<IUser>{
-  protected override resultUrl = '/user'
+export class FormUserComponent extends BaseFormOprCU<IUser> {
+  protected override resultUrl = '/user';
   override formConfig: IForm<IUser> = {
     id: [null],
     lastName: [null, Validators.required],
@@ -21,14 +28,16 @@ export class FormUserComponent extends BaseFormOprCU<IUser>{
     description: [null, Validators.required],
   };
 
-
-  constructor(router: Router, route: ActivatedRoute, dataService: AbstractDataService<IUser>) {
+  constructor(
+    router: Router,
+    route: ActivatedRoute,
+    dataService: AbstractDataService<IUser>
+  ) {
     super(router, route, dataService);
   }
 
   override addedItem(): void {
     this.form.patchValue({ id: this.dataService.setId() });
-    super.addedItem()
+    super.addedItem();
   }
-
 }
