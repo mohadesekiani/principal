@@ -4,8 +4,8 @@ import { TestUtil } from "src/app/core-test/utils/test-util";
 
 export class FormUserComponentPage extends BasePage<FormUserComponent>{
 
-    constructor() {
-        super(FormUserComponent);
+    constructor(additionalConfig?: any) {
+        super(FormUserComponent, additionalConfig);
         spyOn(this.component, 'submit')
     }
 

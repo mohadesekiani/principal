@@ -1,10 +1,19 @@
+import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
 import { FormUserComponentPage } from './form-user.component.integration.spec.page';
+import { UserDataService } from '../../services/user-data.service';
 
 describe('SUT(Integration): FormUserComponent', () => {
     let sutPage: FormUserComponentPage;
-
+    const additionalConfig = {
+        providers: [
+            {
+                provide: AbstractDataService,
+                useClass: UserDataService,
+            }
+        ],
+    };
     beforeEach(() => {
-        sutPage = new FormUserComponentPage()
+        sutPage = new FormUserComponentPage(additionalConfig)
     });
 
     it('should create', () => {

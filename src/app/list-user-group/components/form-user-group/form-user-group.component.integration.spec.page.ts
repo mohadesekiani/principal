@@ -4,8 +4,8 @@ import { TestUtil } from "src/app/core-test/utils/test-util";
 
 export class FormUserGroupComponentPage extends BasePage<FormUserGroupComponent>{
 
-    constructor() {
-        super(FormUserGroupComponent);
+    constructor(additionalConfig?: any) {
+        super(FormUserGroupComponent,additionalConfig);
         spyOn(this.component, 'submit')
     }
 
