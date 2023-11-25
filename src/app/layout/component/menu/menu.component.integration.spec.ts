@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterLink } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TestUtil } from 'src/app/core-test/test-util';
+import { TestUtil } from 'src/app/core-test/utils/test-util';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MenuComponent } from './menu.component';
 describe('SUT(Integration): MenuComponent', () => {

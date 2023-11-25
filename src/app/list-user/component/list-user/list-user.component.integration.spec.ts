@@ -1,75 +1,51 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserModule } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { ListUserComponent } from './list-user.component';
-import { UserDataService } from '../../services/user-data.service';
-import { TestUtil } from 'src/app/core-test/test-util';
 import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
+import { ListUserComponentPage } from './list-user.component.integration.spec.page';
+import { UserDataService } from '../../services/user-data.service';
 
 describe('SUT(Integration): ListUserComponent', () => {
-    let sut: ListUserComponent;
-    let fixture: ComponentFixture<ListUserComponent>;
-
+    let sutPage: ListUserComponentPage;
+    const additionalConfig = {
+        providers: [
+            {
+                provide: AbstractDataService,
+                useClass: UserDataService,
+            }
+        ],
+    };
     beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [NoopAnimationsModule, SharedModule, BrowserModule, RouterTestingModule],
-            declarations: [ListUserComponent],
-            providers: [
-                {
-                    provide: AbstractDataService,
-                    useClass: UserDataService,
-                }
-            ],
-        });
-        fixture = TestBed.createComponent(ListUserComponent);
-        sut = fixture.componentInstance;
-        fixture.detectChanges();
+        sutPage = new ListUserComponentPage(additionalConfig);
     });
 
     it('should create', () => {
         // assert
-        expect(sut).toBeTruthy();
+        expect(sutPage.detectChanges()).toBeTruthy();
     });
 
     it('should be called the addedUser function when the button is clicked', () => {
-        // arrange
-        const addEl: HTMLButtonElement = TestUtil.nativeElement(fixture, '#add')
-        spyOn(sut, 'addedUser');
-
         // action
-        addEl.click();
+        sutPage.addEl.click();
 
         // assert
-        expect(sut.addedUser).toHaveBeenCalled();
+        expect(sutPage.component.addedItem).toHaveBeenCalled();
     });
 
     it('should be called the deletedUser function when the button is clicked', () => {
-        // arrange
-        const deleteEl: HTMLButtonElement = TestUtil.nativeElement(fixture, '#delete')
-        spyOn(sut, 'deletedUser');
-
         // action
-        deleteEl.click();
+        sutPage.deleteEl.click();
 
         // assert
-        expect(sut.deletedUser).toHaveBeenCalled();
+        expect(sutPage.component.deletedItem).toHaveBeenCalled();
     });
 
     it('should be called the editUser function when the button is clicked', () => {
-        // arrange
-        const editEl: HTMLButtonElement = TestUtil.nativeElement(fixture, '#edit')
-        spyOn(sut, 'editUser');
-
         // action
-        editEl.click();
+        sutPage.editEl.click();
 
         // assert
-        expect(sut.editUser).toHaveBeenCalled();
+        expect(sutPage.component.editItem).toHaveBeenCalled();
     });
 
     it('should be true when the value of allData is greater than zero', () => {
-        expect(sut.isAllData).toBeTruthy()
+        expect(sutPage.component.isAllData).toBeTruthy()
     });
 });

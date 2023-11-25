@@ -1,72 +1,51 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserModule } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
-import { TestUtil } from 'src/app/core-test/test-util';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { UserGroupDataService } from '../../services/user-group-data.service';
-import { ListUserGroupComponent } from './list-user-group.component';
+import { TestUtil } from 'src/app/core-test/utils/test-util';
 import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
+import { UserGroupDataService } from '../../services/user-group-data.service';
+import { ListUserGroupComponentPage } from './list-user-group.component.integration.spec.page';
 describe('SUT(Integration): ListUserGroupComponent', () => {
-    let sut: ListUserGroupComponent;
-    let fixture: ComponentFixture<ListUserGroupComponent>;
+    let sutPage: ListUserGroupComponentPage;
+    const additionalConfig = {
+        providers: [
+            {
+                provide: AbstractDataService,
+                useClass: UserGroupDataService,
+            }
+        ],
+    };
     beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [NoopAnimationsModule, SharedModule, BrowserModule, RouterTestingModule],
-            declarations: [ListUserGroupComponent],
-            providers: [
-                {
-                    provide: AbstractDataService,
-                    useClass: UserGroupDataService,
-                }
-            ],
-        });
-        fixture = TestBed.createComponent(ListUserGroupComponent);
-        sut = fixture.componentInstance;
-        fixture.detectChanges();
+        sutPage = new ListUserGroupComponentPage(additionalConfig)
     });
+
     it('should create', () => {
         // assert
-        expect(sut).toBeTruthy();
+        expect(sutPage.detectChanges()).toBeTruthy();
     });
 
     it('should be called the addedUserGroup function when the button is clicked', () => {
-        // arrange
-        const addEl: HTMLButtonElement = TestUtil.nativeElement(fixture, '#add')
-        spyOn(sut, 'addedItem');
-
         // action
-        addEl.click();
+        sutPage.addEl.click();
 
         // assert
-        expect(sut.addedItem).toHaveBeenCalled();
+        expect(sutPage.component.addedItem).toHaveBeenCalled();
     });
 
     it('should be called the deletedUserGroup function when the button is clicked', () => {
-        // arrange
-        const deleteEl: HTMLButtonElement = TestUtil.nativeElement(fixture, '#delete')
-        spyOn(sut, 'deletedItem');
-
         // action
-        deleteEl.click();
+        sutPage.deleteEl.click();
 
         // assert
-        expect(sut.deletedItem).toHaveBeenCalled();
+        expect(sutPage.component.deletedItem).toHaveBeenCalled();
     });
 
     it('should be called the editUserGroup function when the button is clicked', () => {
-        // arrange
-        const editEl: HTMLButtonElement = TestUtil.nativeElement(fixture, '#edit')
-        spyOn(sut, 'editItem');
-
         // action
-        editEl.click();
+        sutPage.editEl.click();
 
         // assert
-        expect(sut.editItem).toHaveBeenCalled();
+        expect(sutPage.component.editItem).toHaveBeenCalled();
     });
 
     it('should be true when the value of allData is greater than zero', () => {
-        expect(sut.isAllData).toBeTruthy()
+        expect(sutPage.component.isAllData).toBeTruthy()
     });
 });
