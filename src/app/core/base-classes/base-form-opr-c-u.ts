@@ -57,7 +57,6 @@ export abstract class BaseFormOprCU<T> extends BaseForm<T> {
   }
 
   addedItem() {
-    alert('adding item ');
     if (!this.form.valid) {
       return;
     }
@@ -67,13 +66,11 @@ export abstract class BaseFormOprCU<T> extends BaseForm<T> {
   }
 
   editItem() {
-    alert('form is editing');
     if (!this.form.valid) {
       return;
     }
     this.dataService.editData(this.itemId, this.form.value as T).subscribe({
       next: (res) => {
-        alert('edit data of service emited.');
       },
     });
   }

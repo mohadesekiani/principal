@@ -1,5 +1,5 @@
 export interface IUserGroup {
     id:string,
-    description: string,
-    name: string,
+    description: string | null,
+    name: string | null,
 }

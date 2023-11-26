@@ -5,13 +5,13 @@ import * as fakeData from '../../services/mock-data/index';
 import { of } from "rxjs";
 import { IUserGroup } from "src/app/core/model/interface/user-group.interface";
 import { AbstractDataService } from "src/app/core/base-services/abstract-data-service";
+import { FormUserGroupFormBuilder } from "./form-user-group.component.spec.builder";
+import { formUserGroupConst } from "src/app/core/model/interface/form-user-group.spec.const";
 
 describe('SUT: FormUserGroupComponent', () => {
   let sut: FormUserGroupComponent;
-  let fb: FormBuilder;
-  let router: jasmine.SpyObj<Router>;
-  let route: jasmine.SpyObj<ActivatedRoute>;
   let userGroupDataService: jasmine.SpyObj<AbstractDataService<IUserGroup>>;
+  let sutBuilder: FormUserGroupFormBuilder;
 
   beforeEach(() => {
     userGroupDataService = jasmine.createSpyObj<AbstractDataService<IUserGroup>>({
@@ -22,38 +22,39 @@ describe('SUT: FormUserGroupComponent', () => {
       editData: of({
         id: '123', description: 'test for description', name: 'm3 k3'
       }),
-      setId:'userGroup_123_y'
+      setId: 'userGroup_123_y'
 
     });
-    fb = new FormBuilder();
-    router = jasmine.createSpyObj<Router>('Router', ['navigate']) as any;
-    route = { params: jasmine.createSpyObj('params', ['subscribe']) } as jasmine.SpyObj<ActivatedRoute>;
-    sut = new FormUserGroupComponent(router, route, userGroupDataService);
-    sut.ngOnInit()
+    sutBuilder = new FormUserGroupFormBuilder(userGroupDataService);
   });
 
   it('should create', () => {
     // assert
+    sut = sutBuilder.build()
     expect(sut).toBeTruthy();
   });
 
   it('should be throw exception with null FormBuilder and router and userGroupDataService and route', () => {
     // assert
-    expect(() => new FormUserGroupComponent(null as any, route, userGroupDataService)).toThrowError('router is null')
-    expect(() => new FormUserGroupComponent(router, route, null as any)).toThrowError('dataService is null')
-    expect(() => new FormUserGroupComponent(router, null as any, userGroupDataService)).toThrowError('route is null')
+    expect(() => new FormUserGroupComponent(null as any, sutBuilder.route, userGroupDataService)).toThrowError('router is null')
+    expect(() => new FormUserGroupComponent(sutBuilder.router, sutBuilder.route, null as any)).toThrowError('dataService is null')
+    expect(() => new FormUserGroupComponent(sutBuilder.router, null as any, userGroupDataService)).toThrowError('route is null')
   });
 
   it('should be create properly', () => {
+    // arrange
+    sut = sutBuilder.build()
+
     // assert
     expect(sut.form).toBeTruthy();
-    expect(sut.form.value).toEqual({
-      id: null, description: null, name: null
-    });
+    expect(sut.form.value).toEqual(formUserGroupConst.defaultFormUserGroup);
     expect(sut.isEditMode).toBeFalsy();
   });
 
   it(`should be have an error 'required' when the value is null`, () => {
+    // arrange
+    sut = sutBuilder.build()
+
     // assert
     expect(sut.form.controls.name.hasError('required')).toBeTruthy()
     expect(sut.form.controls.description.hasError('required')).toBeTruthy()
@@ -61,7 +62,8 @@ describe('SUT: FormUserGroupComponent', () => {
 
   it('should set isEditMode to true and load data when id is provided in params', () => {
     // arrange
-    route.params = of({ id: '123' });
+    sut = sutBuilder.build()
+    sutBuilder.route.params = of({ id: '123' });
 
     // act
     sut.ngOnInit()
@@ -77,10 +79,9 @@ describe('SUT: FormUserGroupComponent', () => {
   it(`should be when submitting,if there is no ID and the form is valid added new userGroup
   and return to the previous page`, () => {
     // arrange
+    sut = sutBuilder.with_some_valid_data_for_form(formUserGroupConst.SomeFormUserGroup).build()
     sut.isEditMode = false
-    sut.form.setValue({
-      id: '', description: 'test for description', name: 'm4 k4'
-    })
+
 
     // act
     sut.submit()
@@ -88,12 +89,12 @@ describe('SUT: FormUserGroupComponent', () => {
     // assert
     expect(sut.form.controls.id.value).not.toBe('')
     expect(userGroupDataService.addedData).toHaveBeenCalledWith(sut.form.value as IUserGroup);
-    expect(router.navigate).toHaveBeenCalledWith(['/user-group']);
+    expect(sutBuilder.router.navigate).toHaveBeenCalledWith(['/user-group']);
   });
 
   it('should not call addedData when form is not valid', () => {
     //arrange
-    sut.form.patchValue({ name: 'm3 k3' })
+    sut = sutBuilder.with_some_invalid_data_for_form(formUserGroupConst.SomeInvalidFormUserGroup).build()
 
     // act
     sut.addedItem();
@@ -105,7 +106,8 @@ describe('SUT: FormUserGroupComponent', () => {
 
   it(`should be when submitting,if there is ID and the form updated and return to the previous page`, () => {
     // arrange
-    route.params = of({ id: '123' });
+    sut = sutBuilder.build()
+    sutBuilder.route.params = of({ id: '123' });
     sut.isEditMode = true;
 
     // act
@@ -117,12 +119,12 @@ describe('SUT: FormUserGroupComponent', () => {
     expect(sut.form.controls.id.value).toBe('123')
     expect(sut.form.controls.name.value).toBe('m4 k4')
     expect(userGroupDataService.editData).toHaveBeenCalledWith('123', sut.form.value as IUserGroup);
-    expect(router.navigate).toHaveBeenCalledWith(['/user-group']);
+    expect(sutBuilder.router.navigate).toHaveBeenCalledWith(['/user-group']);
   });
 
   it('should not call editData when form is not valid', () => {
     //arrange
-    sut.form.patchValue({ description: 'test for des' })
+    sut = sutBuilder.with_some_invalid_data_for_form(formUserGroupConst.SomeInvalidFormUserGroup).build();
 
     // act
     sut.editItem()
@@ -135,7 +137,8 @@ describe('SUT: FormUserGroupComponent', () => {
 
   it('should be invalid for no navigate', () => {
     // arrange
-    route.params = of({ id: '123' });
+    sut = sutBuilder.build()
+    sutBuilder.route.params = of({ id: '123' });
     sut.isEditMode = true;
 
     // act
@@ -145,7 +148,7 @@ describe('SUT: FormUserGroupComponent', () => {
 
     // assert
     expect(sut.form.invalid).toBeTruthy()
-    expect(router.navigate).not.toHaveBeenCalledWith(['/user-group'])
+    expect(sutBuilder.router.navigate).not.toHaveBeenCalledWith(['/user-group'])
     expect(sut.form.dirty).toBeTrue()
     expect(sut.form.touched).toBeTrue();
   });

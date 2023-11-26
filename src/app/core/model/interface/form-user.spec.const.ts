@@ -1,7 +1,7 @@
 
 
 export class formUserConst {
-    static get SomeValidFormUser() {
+    static get SomeFormUser() {
         return {
             id: '',
             lastName: 'm4',
@@ -14,7 +14,7 @@ export class formUserConst {
     }
     static get SomeInvalidFormUser() {
         return {
-            id: null,
+            id: '',
             lastName: null,
             firstName: null,
             email: 'm4@gmail.com',

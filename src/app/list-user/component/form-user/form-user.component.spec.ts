@@ -75,8 +75,6 @@ describe('SUT: FormUserComponent', () => {
   it('should set isEditMode to true and load data when id is provided in params', () => {
     // arrange
     sut = sutBuilder.build();
-
-    // arrange
     sutBuilder.route.params = of({ id: '123' });
 
     // act
@@ -93,7 +91,7 @@ describe('SUT: FormUserComponent', () => {
   it(`should be when submitting,if there is no ID and the form is valid added new user 
       and return to the previous page`, () => {
     // arrange
-    sut = sutBuilder.with_some_valid_data_for_form(formUserConst.SomeValidFormUser).build();
+    sut = sutBuilder.with_some_valid_data_for_form(formUserConst.SomeFormUser).build();
     sut.isEditMode = false
 
     // act

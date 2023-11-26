@@ -5,15 +5,7 @@ import { IUser } from "src/app/core/model/interface/user.interface";
 import { FormUserComponent } from "./form-user.component";
 
 
-
-const sutConst = formUserConst;
 export class FormUserFormBuilder extends BaseFormOprCUBuilder<FormUserComponent>{
-    override get some_data(): Partial<IUser> {
-        return sutConst.SomeValidFormUser;
-    }
-    override get expected_default_form_value(): Partial<IUser> {
-        return sutConst.defaultFormUser;
-    }
 
     constructor(private dataService: AbstractDataService<IUser>) {
         super()

@@ -13,14 +13,10 @@ export class UserDataService extends AbstractDataService<IUser> {
   }
 
   getAllData(): Observable<any> {
-    console.log(this.myData);
-
     return of(this.myData);
   }
 
   deleteData(userId: string): Observable<any> {
-    alert('im single delete');
-
     const index = this.myData.findIndex((user) => user.id === userId);
     this.myData.splice(index, 1);
     return of(this.myData);
