@@ -23,4 +23,10 @@ export class formUserGroupConst {
         }
 
     }
+    static get FormUserGroupWithParams() {
+        return {
+            id: '123', description: 'test for description', name: 'Doe John'
+        }
+
+    }
 }

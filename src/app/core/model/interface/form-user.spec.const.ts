@@ -12,6 +12,12 @@ export class formUserConst {
         }
 
     }
+    static get FormUserWithParams() {
+        return {
+            id: '123', lastName: 'm3', firstName: 'k3', email: 'john.doe@example.com', description: 'test for description', name: 'm3 k3'
+        }
+
+    }
     static get SomeInvalidFormUser() {
         return {
             id: '',
@@ -19,7 +25,7 @@ export class formUserConst {
             firstName: null,
             email: 'm4@gmail.com',
             description: null,
-            name:null
+            name: null
         }
 
     }
@@ -30,7 +36,7 @@ export class formUserConst {
             firstName: null,
             email: null,
             description: null,
-            name:null
+            name: null
         }
 
     }

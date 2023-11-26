@@ -3,13 +3,11 @@ import { BaseFormOprCU } from "src/app/core/base-classes/base-form-opr-c-u";
 
 export abstract class BaseFormOprCUBuilder<Q extends BaseFormOprCU<any>> {
   router: jasmine.SpyObj<Router>;
-  route: jasmine.SpyObj<ActivatedRoute>;
 
   formValue!: Partial<Q['entity']>;
 
   constructor() {
     this.router = jasmine.createSpyObj<Router>('Router', ['navigate']) as any;
-    this.route = { params: jasmine.createSpyObj('params', ['subscribe']) } as jasmine.SpyObj<ActivatedRoute>;
   }
 
   with_data_for_form(value: Partial<Q['entity']>): this {

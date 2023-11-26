@@ -1,12 +1,10 @@
-import { FormBuilder } from "@angular/forms";
-import { FormUserGroupComponent } from "./form-user-group.component";
-import { ActivatedRoute, Router } from "@angular/router";
-import * as fakeData from '../../services/mock-data/index';
 import { of } from "rxjs";
-import { IUserGroup } from "src/app/core/model/interface/user-group.interface";
 import { AbstractDataService } from "src/app/core/base-services/abstract-data-service";
-import { FormUserGroupFormBuilder } from "./form-user-group.component.spec.builder";
 import { formUserGroupConst } from "src/app/core/model/interface/form-user-group.spec.const";
+import { IUserGroup } from "src/app/core/model/interface/user-group.interface";
+import * as fakeData from '../../services/mock-data/index';
+import { FormUserGroupComponent } from "./form-user-group.component";
+import { FormUserGroupFormBuilder } from "./form-user-group.component.spec.builder";
 
 describe('SUT: FormUserGroupComponent', () => {
   let sut: FormUserGroupComponent;
@@ -16,12 +14,8 @@ describe('SUT: FormUserGroupComponent', () => {
   beforeEach(() => {
     userGroupDataService = jasmine.createSpyObj<AbstractDataService<IUserGroup>>({
       addedData: of(fakeData),
-      getByID: of({
-        id: '123', description: 'test for description', name: 'Doe John'
-      }),
-      editData: of({
-        id: '123', description: 'test for description', name: 'm3 k3'
-      }),
+      getByID: of(formUserGroupConst.FormUserGroupWithParams),
+      editData: of(formUserGroupConst.FormUserGroupWithParams),
       setId: 'userGroup_123_y'
 
     });
@@ -71,9 +65,7 @@ describe('SUT: FormUserGroupComponent', () => {
     // assert
     expect(sut.isEditMode).toBe(true);
     expect(sut.itemId).toBe('123');
-    expect(sut.form.value).toEqual({
-      id: '123', description: 'test for description', name: 'Doe John'
-    });
+    expect(sut.form.value).toEqual(formUserGroupConst.FormUserGroupWithParams);
   });
 
   it(`should be when submitting,if there is no ID and the form is valid added new userGroup

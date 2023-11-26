@@ -15,12 +15,8 @@ describe('SUT: FormUserComponent', () => {
   beforeEach(() => {
     userDataService = jasmine.createSpyObj<AbstractDataService<IUser>>({
       addedData: of(fakeData),
-      getByID: of({
-        id: '123', lastName: 'Doe', firstName: 'John', email: 'john.doe@example.com', description: 'test for description', name: 'Doe John'
-      }),
-      editData: of({
-        id: '123', lastName: 'm3', firstName: 'k3', email: 'john.doe@example.com', description: 'test for description', name: 'm3 k3'
-      }),
+      getByID: of(formUserConst.FormUserWithParams),
+      editData: of(formUserConst.FormUserWithParams),
       setId: 'user_123_y'
     });
     sutBuilder = new FormUserFormBuilder(userDataService)
@@ -83,9 +79,7 @@ describe('SUT: FormUserComponent', () => {
     // assert
     expect(sut.isEditMode).toBe(true);
     expect(sut.itemId).toBe('123');
-    expect(sut.form.value).toEqual({
-      id: '123', lastName: 'Doe', firstName: 'John', email: 'john.doe@example.com', description: 'test for description', name: 'Doe John'
-    });
+    expect(sut.form.value).toEqual(formUserConst.FormUserWithParams);
   });
 
   it(`should be when submitting,if there is no ID and the form is valid added new user 
