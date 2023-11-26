@@ -21,11 +21,12 @@ export class ListUserComponent extends BaseFormOprRD<IUser> {
   protected override resultUrlNewItem = '/user/new';
   protected override resultUrlUpdateItem: string = '/user/';
   itemHeader = Object.values(UserTableHeaderEnum).map((value) => ({
-    title: value.replace(/([a-z])([A-Z])/g, '$1 $2'),
-    value,
-  }));
-
+      title: value.replace(/([a-z])([A-Z])/g, '$1 $2'),
+      value,
+    }));
+  
   constructor(router: Router, dataService: AbstractDataService<IUser>) {
     super(router, dataService);
   }
+
 }

@@ -1,6 +1,6 @@
-<form [formGroup]="form"
+<form [formGroup]="form" 
       (submit)="(submit)">
-    <mat-form-field>
+    <mat-form-field class="m-4">
         <mat-label>Enter your Name</mat-label>
         <input matInput
                formControlName="name"
@@ -13,5 +13,6 @@
                id="description">
     </mat-form-field>
     <button (click)="submit()"
+    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             id="submit">{{isEditMode ? 'update' :'add'}}</button>
 </form>
