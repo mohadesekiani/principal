@@ -4,19 +4,13 @@ import { IUserGroup } from "src/app/core/model/interface/user-group.interface";
 import { of } from "rxjs";
 import { UserGroupTableHeaderEnum } from "src/app/core/model/enum/user-group-table-heder";
 import { AbstractDataService } from "src/app/core/base-services/abstract-data-service";
+import { listUserGroupConst } from "src/app/core/model/interface/list-user-group.spec.const";
 
 describe('SUT: ListUserGroupComponent', () => {
   let sut: ListUserGroupComponent;
   let router: jasmine.SpyObj<Router>;
   let userGroupDataService: jasmine.SpyObj<AbstractDataService<IUserGroup>>;
-  const fakeUserGroups: IUserGroup[] = [
-    {
-      id: 'userGroup_23_k', description: 'test for description', name: 'm1 k1'
-    },
-    {
-      id: 'userGroup_26_t', description: 'test for description', name: 'm2 k2'
-    },
-  ];
+  const fakeUserGroups: IUserGroup[] = listUserGroupConst.fakeUserGroups;
   beforeEach(() => {
     userGroupDataService = jasmine.createSpyObj<AbstractDataService<IUserGroup>>({
       getAllData: of(fakeUserGroups),

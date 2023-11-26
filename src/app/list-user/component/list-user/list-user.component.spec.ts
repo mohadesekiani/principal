@@ -5,15 +5,13 @@ import { AbstractDataService } from 'src/app/core/base-services/abstract-data-se
 import { UserTableHeaderEnum } from 'src/app/core/model/enum/user-table-heder';
 import { IUser } from 'src/app/core/model/interface/user.interface';
 import { ListUserComponent } from './list-user.component';
+import { listUserConst } from 'src/app/core/model/interface/list-user.spec.const';
 
 describe('SUT: ListUserComponent', () => {
   let sut: ListUserComponent;
   let router: jasmine.SpyObj<Router>;
   let userDataService: jasmine.SpyObj<AbstractDataService<IUser>>;
-  const fakeUsers: IUser[] = [
-    { id: '315768d5', firstName: 'm1', lastName: 'k1', email: 'm1@gmail.com', description: 'test for description', name: 'm1 k1' },
-    { id: 'a096aae1', firstName: 'm2', lastName: 'k2', email: 'm2@gmail.com', description: 'test for description', name: 'm2 k2' },
-  ];
+  const fakeUsers: IUser[] =listUserConst.fakeUser;
 
   beforeEach(() => {
     userDataService = jasmine.createSpyObj<AbstractDataService<IUser>>({
