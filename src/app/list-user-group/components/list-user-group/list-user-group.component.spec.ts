@@ -1,10 +1,10 @@
 import { Router } from "@angular/router";
-import { ListUserGroupComponent } from "./list-user-group.component";
-import { IUserGroup } from "src/app/core/model/interface/user-group.interface";
 import { of } from "rxjs";
-import { UserGroupTableHeaderEnum } from "src/app/core/model/enum/user-group-table-heder";
-import { AbstractDataService } from "src/app/core/base-services/abstract-data-service";
 import { listUserGroupConst } from "src/app/core-test/model/list-user-group.spec.const";
+import { AbstractDataService } from "src/app/core/base-services/abstract-data-service";
+import { UserGroupTableHeaderEnum } from "src/app/core/model/enum/user-group-table-heder";
+import { IUserGroup } from "src/app/core/model/interface/user-group.interface";
+import { ListUserGroupComponent } from "./list-user-group.component";
 
 describe('SUT: ListUserGroupComponent', () => {
   let sut: ListUserGroupComponent;
