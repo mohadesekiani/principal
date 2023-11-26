@@ -1,7 +1,7 @@
 import { ActivatedRoute, Router } from "@angular/router";
 import { BaseFormOprCU } from "src/app/core/base-classes/base-form-opr-c-u";
 
-export abstract class BaseFormOprCUBuilder<Q extends BaseFormOprCU<any>> {
+export abstract class BaseBuilder<Q extends BaseFormOprCU<any>> {
   router: jasmine.SpyObj<Router>;
   route: jasmine.SpyObj<ActivatedRoute>;
 

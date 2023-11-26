@@ -1,11 +1,10 @@
-import { BaseFormOprCUBuilder } from "src/app/core-test/base-unit-test/base-form-opr-c-u-builder";
 import { AbstractDataService } from "src/app/core/base-services/abstract-data-service";
-import { formUserConst } from "src/app/core-test/model/form-user.spec.const";
 import { IUser } from "src/app/core/model/interface/user.interface";
 import { FormUserComponent } from "./form-user.component";
+import { BaseBuilder } from "src/app/core-test/base-unit-test/base-builder";
 
 
-export class FormUserFormBuilder extends BaseFormOprCUBuilder<FormUserComponent>{
+export class FormUserFormBuilder extends BaseBuilder<FormUserComponent>{
 
     constructor(private dataService: AbstractDataService<IUser>) {
         super()
