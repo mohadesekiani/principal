@@ -5,7 +5,7 @@ import { AbstractDataService } from 'src/app/core/base-services/abstract-data-se
 import { UserTableHeaderEnum } from 'src/app/core/model/enum/user-table-heder';
 import { IUser } from 'src/app/core/model/interface/user.interface';
 import { ListUserComponent } from './list-user.component';
-import { listUserConst } from 'src/app/core/model/interface/list-user.spec.const';
+import { listUserConst } from 'src/app/core-test/model/list-user.spec.const';
 
 describe('SUT: ListUserComponent', () => {
   let sut: ListUserComponent;

@@ -1,6 +1,6 @@
 import { BaseFormOprCUBuilder } from "src/app/core-test/base-unit-test/base-form-opr-c-u-builder";
 import { AbstractDataService } from "src/app/core/base-services/abstract-data-service";
-import { formUserConst } from "src/app/core/model/interface/form-user.spec.const";
+import { formUserConst } from "src/app/core-test/model/form-user.spec.const";
 import { IUser } from "src/app/core/model/interface/user.interface";
 import { FormUserComponent } from "./form-user.component";
 

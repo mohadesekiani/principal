@@ -4,7 +4,7 @@ import { IUserGroup } from "src/app/core/model/interface/user-group.interface";
 import { of } from "rxjs";
 import { UserGroupTableHeaderEnum } from "src/app/core/model/enum/user-group-table-heder";
 import { AbstractDataService } from "src/app/core/base-services/abstract-data-service";
-import { listUserGroupConst } from "src/app/core/model/interface/list-user-group.spec.const";
+import { listUserGroupConst } from "src/app/core-test/model/list-user-group.spec.const";
 
 describe('SUT: ListUserGroupComponent', () => {
   let sut: ListUserGroupComponent;
