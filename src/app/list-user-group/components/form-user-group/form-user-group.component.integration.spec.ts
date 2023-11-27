@@ -35,7 +35,7 @@ describe('SUT(Integration): FormUserGroupComponent', () => {
         // arrange
         sutPage.detectChanges()
 
-        // action
+        // act
         sutPage.submitEl.click();
 
         // assert

@@ -12,6 +12,11 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'user',
+        pathMatch: 'full',
+      },
+      {
         path: 'user',
         component: ListUserComponent,
       },

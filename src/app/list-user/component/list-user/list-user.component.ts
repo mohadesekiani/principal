@@ -5,6 +5,7 @@ import { AbstractDataService } from 'src/app/core/base-services/abstract-data-se
 import { UserTableHeaderEnum } from 'src/app/core/model/enum/user-table-heder';
 import { IUser } from 'src/app/core/model/interface/user.interface';
 import { UserDataService } from '../../services/user-data.service';
+import { TruncatePipe } from 'src/app/core/pipe-custom/truncate.pipe';
 
 @Component({
   selector: 'app-list-user',
@@ -15,6 +16,7 @@ import { UserDataService } from '../../services/user-data.service';
       provide: AbstractDataService<IUser>,
       useExisting: UserDataService,
     },
+    TruncatePipe
   ],
 })
 export class ListUserComponent extends BaseFormOprRD<IUser> {

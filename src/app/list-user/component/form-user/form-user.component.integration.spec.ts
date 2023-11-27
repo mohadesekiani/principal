@@ -46,7 +46,7 @@ describe('SUT(Integration): FormUserComponent', () => {
         // arrange
         sutPage.detectChanges()
 
-        // action
+        // act
         sutPage.submitEl.click();
 
         // assert

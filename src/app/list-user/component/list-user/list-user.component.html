@@ -5,14 +5,22 @@
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 id="add">add +</button>
     </div>
-    <div class="mb-8" *ngIf="isAllData()">
+    <div class="mb-8"
+         *ngIf="isAllData()">
         <table class="table-auto">
             <tr class="border-b dark:border-neutral-500">
-                <th class="px-6 py-4" *ngFor="let item of itemHeader">{{item.title}}</th>
+                <th class="px-6 py-4"
+                    *ngFor="let item of itemHeader">{{item.title}}</th>
             </tr>
-            <tr class="border-b dark:border-neutral-500" *ngFor="let item of allData">
+            <tr class="border-b dark:border-neutral-500"
+                *ngFor="let item of allData;">
                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.name}}</td>
-                <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.description}}</td>
+                <td class="whitespace-nowrap px-6 py-4 font-medium"
+                    [attr.item-id]="item.id"
+                    matTooltipPosition="right"
+                    [matTooltip]="item.description ?? ''"> {{ item.description ?? '' | truncate: 10 }}
+
+                </td>
                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.firstName}}</td>
                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.lastName}}</td>
                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.email}}</td>

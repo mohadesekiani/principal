@@ -1,18 +1,22 @@
-<form [formGroup]="form" 
+<form [formGroup]="form"
       (submit)="(submit)">
+  <div class="grid grid-cols-2 gap-4">
     <mat-form-field class="m-4">
-        <mat-label>Enter your Name</mat-label>
-        <input matInput
-               formControlName="name"
-               id="name">
+      <mat-label>Enter your Name</mat-label>
+      <input matInput
+             formControlName="name"
+             id="name">
     </mat-form-field>
-    <mat-form-field>
-        <mat-label>Enter your description</mat-label>
-        <input matInput
-               formControlName="description"
-               id="description">
+    <mat-form-field class="m-4">
+      <mat-label>Enter your description</mat-label>
+      <input matInput
+             formControlName="description"
+             id="description">
     </mat-form-field>
+  </div>
+  <div class="ml-4">
     <button (click)="submit()"
-    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             id="submit">{{isEditMode ? 'update' :'add'}}</button>
+  </div>
 </form>

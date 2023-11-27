@@ -5,6 +5,7 @@ import { AbstractDataService } from 'src/app/core/base-services/abstract-data-se
 import { UserGroupTableHeaderEnum } from 'src/app/core/model/enum/user-group-table-heder';
 import { IUserGroup } from 'src/app/core/model/interface/user-group.interface';
 import { UserGroupDataService } from '../../services/user-group-data.service';
+import { TruncatePipe } from 'src/app/core/pipe-custom/truncate.pipe';
 
 @Component({
   selector: 'app-list-user-group',
@@ -15,6 +16,7 @@ import { UserGroupDataService } from '../../services/user-group-data.service';
       provide: AbstractDataService<IUserGroup>,
       useExisting: UserGroupDataService,
     },
+    TruncatePipe
   ],
 })
 export class ListUserGroupComponent extends BaseFormOprRD<IUserGroup> {

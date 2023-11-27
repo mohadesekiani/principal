@@ -1,10 +1,14 @@
-import { TestUtil } from 'src/app/core-test/utils/test-util';
 import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
+import { TruncatePipe } from 'src/app/core/pipe-custom/truncate.pipe';
 import { UserGroupDataService } from '../../services/user-group-data.service';
 import { ListUserGroupComponentPage } from './list-user-group.component.integration.spec.page';
+import { ListUserGroupModule } from '../../list-user-group.module';
 describe('SUT(Integration): ListUserGroupComponent', () => {
     let sutPage: ListUserGroupComponentPage;
     const additionalConfig = {
+        imports: [
+            ListUserGroupModule,
+        ],
         providers: [
             {
                 provide: AbstractDataService,
@@ -22,7 +26,7 @@ describe('SUT(Integration): ListUserGroupComponent', () => {
     });
 
     it('should be called the addedUserGroup function when the button is clicked', () => {
-        // action
+        // act
         sutPage.addEl.click();
 
         // assert
@@ -30,7 +34,7 @@ describe('SUT(Integration): ListUserGroupComponent', () => {
     });
 
     it('should be called the deletedUserGroup function when the button is clicked', () => {
-        // action
+        // act
         sutPage.deleteEl.click();
 
         // assert
@@ -38,7 +42,7 @@ describe('SUT(Integration): ListUserGroupComponent', () => {
     });
 
     it('should be called the editUserGroup function when the button is clicked', () => {
-        // action
+        // act
         sutPage.editEl.click();
 
         // assert
@@ -47,5 +51,11 @@ describe('SUT(Integration): ListUserGroupComponent', () => {
 
     it('should be true when the value of allData is greater than zero', () => {
         expect(sutPage.component.isAllData).toBeTruthy()
+    });
+
+    it('should be render truncated description in cell with matching tooltip', () => {
+        // assert
+        expect(sutPage.tdDescriptionWithId.attributes['ng-reflect-message'].value).toBe('test for description');
+        expect(sutPage.tdDescriptionWithId.attributes['ng-reflect-position'].value).toBe('right');
     });
 });

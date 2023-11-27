@@ -41,6 +41,6 @@ describe('SUT(Integration): MenuComponent', () => {
     // assert
     expect(allRouterLinkDir[0].attributes['ng-reflect-router-link']).toEqual('/user');
     expect(allRouterLinkDir[1].attributes['ng-reflect-router-link']).toEqual('/user-group');
-    expect(matListItemUser.getAttribute('routerLinkActive')).toBe('active:bg-violet-700');
+    expect(matListItemUser.getAttribute('routerLinkActive')).toBe('active-bg');
   });
 });

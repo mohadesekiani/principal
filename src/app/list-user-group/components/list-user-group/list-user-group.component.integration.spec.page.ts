@@ -19,4 +19,7 @@ export class ListUserGroupComponentPage extends BasePage<ListUserGroupComponent>
     get editEl(): HTMLButtonElement {
         return TestUtil.nativeElement(this.fixture, '#edit')
     }
+    get tdDescriptionWithId() {
+        return TestUtil.debugElement(this.fixture, 'td[item-id="userGroup_26_t"]').nativeElement
+    }
 }

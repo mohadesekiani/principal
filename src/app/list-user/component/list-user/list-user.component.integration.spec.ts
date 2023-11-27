@@ -1,15 +1,19 @@
 import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
-import { ListUserComponentPage } from './list-user.component.integration.spec.page';
+import { ListUserModule } from '../../list-user.module';
 import { UserDataService } from '../../services/user-data.service';
+import { ListUserComponentPage } from './list-user.component.integration.spec.page';
 
 describe('SUT(Integration): ListUserComponent', () => {
     let sutPage: ListUserComponentPage;
     const additionalConfig = {
+        imports: [
+            ListUserModule,
+        ],
         providers: [
             {
                 provide: AbstractDataService,
                 useClass: UserDataService,
-            }
+            },
         ],
     };
     beforeEach(() => {
@@ -22,7 +26,7 @@ describe('SUT(Integration): ListUserComponent', () => {
     });
 
     it('should be called the addedUser function when the button is clicked', () => {
-        // action
+        // act
         sutPage.addEl.click();
 
         // assert
@@ -30,7 +34,7 @@ describe('SUT(Integration): ListUserComponent', () => {
     });
 
     it('should be called the deletedUser function when the button is clicked', () => {
-        // action
+        // act
         sutPage.deleteEl.click();
 
         // assert
@@ -38,7 +42,7 @@ describe('SUT(Integration): ListUserComponent', () => {
     });
 
     it('should be called the editUser function when the button is clicked', () => {
-        // action
+        // act
         sutPage.editEl.click();
 
         // assert
@@ -48,4 +52,11 @@ describe('SUT(Integration): ListUserComponent', () => {
     it('should be true when the value of allData is greater than zero', () => {
         expect(sutPage.component.isAllData).toBeTruthy()
     });
+
+    it('should be render truncated description in cell with matching tooltip', () => {
+        // assert
+        expect(sutPage.tdDescriptionWithId.attributes['ng-reflect-message'].value).toBe('test for description');
+        expect(sutPage.tdDescriptionWithId.attributes['ng-reflect-position'].value).toBe('right');
+    });
+
 });

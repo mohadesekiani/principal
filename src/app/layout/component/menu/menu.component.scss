@@ -1,0 +1,21 @@
+.custom-nav-list {
+    /* استایل‌های شما برای mat-nav-list */
+}
+
+.custom-list-item {
+    /* استایل‌های شما برای mat-list-item */
+    margin-left: 8px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.custom-list-item:hover {
+    /* استایل‌های شما برای وقتی موس روی آیتم ها هست */
+    background-color: #f0f0f0;
+}
+
+.active-bg {
+    /* استایل‌های شما برای وقتی که آیتم فعال است */
+    background-color: #a6c8ff;
+    color: white;
+}

@@ -16,8 +16,7 @@ import { LayoutRoutingModule } from './layout-routing.module';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    ListUserGroupModule,
-    ListUserModule,
+
   ],
 })
 export class LayoutModule {}

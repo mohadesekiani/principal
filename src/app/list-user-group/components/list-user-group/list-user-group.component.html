@@ -15,7 +15,11 @@
             <tr class="border-b dark:border-neutral-500"
                 *ngFor="let item of allData">
                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.name}}</td>
-                <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.description}}</td>
+                <td class="whitespace-nowrap px-6 py-4 font-medium"
+                    [attr.item-id]="item.id"
+                    matTooltipPosition="right"
+                    [matTooltip]="item.description ?? ''"> {{ item.description ?? '' | truncate: 10 }}
+                </td>
                 <td class="whitespace-nowrap px-6 py-4 font-medium">
                     <mat-icon id="delete"
                               (click)="deletedItem(item.id)">delete</mat-icon>

@@ -1,36 +1,41 @@
 <form [formGroup]="form"
       (submit)="(submit)">
-    <mat-form-field>
-        <mat-label>Enter your Name</mat-label>
-        <input matInput
-               formControlName="name"
-               id="name">
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Enter your description</mat-label>
-        <input matInput
-               formControlName="description"
-               id="description">
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Enter your lastName</mat-label>
-        <input matInput
-               formControlName="lastName"
-               id="lastName">
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Enter your firstName</mat-label>
-        <input matInput
-               formControlName="firstName"
-               id="firstName">
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Enter your email</mat-label>
-        <input matInput
-               placeholder="pat@example.com"
-               formControlName="email"
-               id="email">
-    </mat-form-field>
-    <button (click)="submit()"
-            id="submit">{{isEditMode ? 'update' :'add'}}</button>
+    <div class="grid grid-cols-2 gap-4">
+        <mat-form-field class="m-4">
+            <mat-label>Enter your Name</mat-label>
+            <input matInput
+                   formControlName="name"
+                   id="name">
+        </mat-form-field>
+        <mat-form-field class="m-4">
+            <mat-label>Enter your description</mat-label>
+            <input matInput
+                   formControlName="description"
+                   id="description">
+        </mat-form-field>
+        <mat-form-field class="m-4">
+            <mat-label>Enter your lastName</mat-label>
+            <input matInput
+                   formControlName="lastName"
+                   id="lastName">
+        </mat-form-field>
+        <mat-form-field class="m-4">
+            <mat-label>Enter your firstName</mat-label>
+            <input matInput
+                   formControlName="firstName"
+                   id="firstName">
+        </mat-form-field>
+        <mat-form-field class="m-4">
+            <mat-label>Enter your email</mat-label>
+            <input matInput
+                   placeholder="pat@example.com"
+                   formControlName="email"
+                   id="email">
+        </mat-form-field>
+    </div>
+    <div class="ml-4">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                (click)="submit()"
+                id="submit">{{isEditMode ? 'update' :'add'}}</button>
+    </div>
 </form>
