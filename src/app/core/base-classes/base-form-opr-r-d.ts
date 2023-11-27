@@ -1,6 +1,6 @@
-import { Directive, EventEmitter, Output } from "@angular/core";
-import { AbstractDataService } from "../base-services/abstract-data-service";
+import { Directive } from "@angular/core";
 import { Router } from "@angular/router";
+import { AbstractDataService } from "../base-services/abstract-data-service";
 
 
 @Directive()
@@ -53,7 +53,7 @@ export abstract class BaseFormOprRD<T>{
     addedItem() {
         this.router.navigate([this.resultUrlNewItem]);
     }
-
+// has data
     isAllData() {
         return this.allData.length > 0
     }

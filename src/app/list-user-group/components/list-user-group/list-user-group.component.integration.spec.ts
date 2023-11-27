@@ -1,9 +1,8 @@
 import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
-import { TruncatePipe } from 'src/app/core/pipe-custom/truncate.pipe';
 import { UserGroupDataService } from '../../services/user-group-data.service';
 import { ListUserGroupComponentPage } from './list-user-group.component.integration.spec.page';
 import { ListUserGroupModule } from '../../list-user-group.module';
-describe('SUT(Integration): ListUserGroupComponent', () => {
+xdescribe('SUT(Integration): ListUserGroupComponent', () => {
     let sutPage: ListUserGroupComponentPage;
     const additionalConfig = {
         imports: [

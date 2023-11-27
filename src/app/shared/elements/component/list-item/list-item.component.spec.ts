@@ -1,14 +1,14 @@
 
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
+import { listUserConst } from 'src/app/core-test/model/list-user.spec.const';
 import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
 import { UserTableHeaderEnum } from 'src/app/core/model/enum/user-table-heder';
 import { IUser } from 'src/app/core/model/interface/user.interface';
-import { ListUserComponent } from './list-user.component';
-import { listUserConst } from 'src/app/core-test/model/list-user.spec.const';
+import { ListItemComponent } from './list-item.component';
 
-describe('SUT: ListUserComponent', () => {
-  let sut: ListUserComponent;
+describe('SUT: ListItemComponent', () => {
+  let sut: ListItemComponent;
   let router: jasmine.SpyObj<Router>;
   let userDataService: jasmine.SpyObj<AbstractDataService<IUser>>;
   const fakeUsers: IUser[] =listUserConst.fakeUser;
@@ -19,7 +19,7 @@ describe('SUT: ListUserComponent', () => {
       deleteData: of(fakeUsers),
     });
     router = jasmine.createSpyObj<Router>('Router', ['navigate']) as any;
-    sut = new ListUserComponent(router, userDataService);
+    sut = new ListItemComponent(router, userDataService);
     sut.ngOnInit();
   });
 
@@ -39,8 +39,8 @@ describe('SUT: ListUserComponent', () => {
 
   it('should be throw exception with null router,dataService', () => {
     // assert
-    expect(() => new ListUserComponent(router, null as any)).toThrowError('dataService is null')
-    expect(() => new ListUserComponent(null as any, userDataService)).toThrowError('router is null')
+    expect(() => new ListItemComponent(router, null as any)).toThrowError('dataService is null')
+    expect(() => new ListItemComponent(null as any, userDataService)).toThrowError('router is null')
   });
   it('should be all data returned when the data service is called', () => {
     // assert

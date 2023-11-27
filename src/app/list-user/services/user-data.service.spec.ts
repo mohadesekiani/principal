@@ -35,14 +35,15 @@ describe('SUT: UserDataService', () => {
         })
 
         // assert
-        expect(actual).toEqual([{ id: 'a096aae1', firstName: 'm2', lastName: 'k2', email: 'm2@gmail.com', description: 'test for description', name: 'm2 k2' }])
+        expect(actual).toEqual([{ id: 'a096aae1',type:"user", firstName: 'm2', lastName: 'k2', email: 'm2@gmail.com', description: 'test for description', name: 'm2 k2' }, { id: 'userGroup_23_k',type:"user", description: 'test for description', name: 'm1 k1', firstName: null, lastName: null, email: null },
+        { id: 'userGroup_26_t',type:"user", description: 'test for description', name: 'm2 k2', firstName: null, lastName: null, email: null },])
     });
 
     it('should be added new user to the list of users', () => {
         // arrange
         let actual: IUser[] = []
         const newUser = {
-            id: 'a096aae2', firstName: 'm3', lastName: 'k3', email: 'm3@gmail.com', description: 'test for description', name: 'm3 k3'
+            id: 'a096aae2',type:"user", firstName: 'm3', lastName: 'k3', email: 'm3@gmail.com', description: 'test for description', name: 'm3 k3'
         }
 
         // act
@@ -52,16 +53,18 @@ describe('SUT: UserDataService', () => {
 
         // assert
         expect(actual).toEqual([
-            { id: '315768d5', firstName: 'm1', lastName: 'k1', email: 'm1@gmail.com', description: 'test for description', name: 'm1 k1' },
-            { id: 'a096aae1', firstName: 'm2', lastName: 'k2', email: 'm2@gmail.com', description: 'test for description', name: 'm2 k2' },
-            { id: 'a096aae2', firstName: 'm3', lastName: 'k3', email: 'm3@gmail.com', description: 'test for description', name: 'm3 k3' }
+            { id: '315768d5', firstName: 'm1',type:"user", lastName: 'k1', email: 'm1@gmail.com', description: 'test for description', name: 'm1 k1' },
+            { id: 'a096aae1', firstName: 'm2',type:"user", lastName: 'k2', email: 'm2@gmail.com', description: 'test for description', name: 'm2 k2' },
+            { id: 'userGroup_23_k',type:"user_group", description: 'test for description', name: 'm1 k1', firstName: null, lastName: null, email: null },
+            { id: 'userGroup_26_t',type:"user_group", description: 'test for description', name: 'm2 k2', firstName: null, lastName: null, email: null },
+            { id: 'a096aae2', firstName: 'm3',type:"user", lastName: 'k3', email: 'm3@gmail.com', description: 'test for description', name: 'm3 k3' }
         ]);
     });
 
     it('should be updated user information', () => {
         // arrange
         let actual: IUser[] = []
-        const updateUser: IUser = { id: '315768d5', firstName: 'mo2', lastName: 'ki2', email: 'm1@gmail.com', description: 'test for description', name: 'mo2 ki2' }
+        const updateUser: IUser = { id: '315768d5',type:"user", firstName: 'mo2', lastName: 'ki2', email: 'm1@gmail.com', description: 'test for description', name: 'mo2 ki2' }
 
         // act
         sut.editData('315768d5', updateUser).subscribe((res) => {
@@ -70,8 +73,10 @@ describe('SUT: UserDataService', () => {
 
         // assert
         expect(actual).toEqual([
-            { id: '315768d5', firstName: 'mo2', lastName: 'ki2', email: 'm1@gmail.com', description: 'test for description', name: 'mo2 ki2' },
-            { id: 'a096aae1', firstName: 'm2', lastName: 'k2', email: 'm2@gmail.com', description: 'test for description', name: 'm2 k2' }])
+            { id: '315768d5', firstName: 'mo2', lastName: 'ki2',type:"user" ,email: 'm1@gmail.com', description: 'test for description', name: 'mo2 ki2' },
+            { id: 'a096aae1', firstName: 'm2', lastName: 'k2',type:"user" ,email: 'm2@gmail.com', description: 'test for description', name: 'm2 k2' },
+            { id: 'userGroup_23_k',type:"user_group", description: 'test for description', name: 'm10 k1', firstName: null, lastName: null, email: null },
+            { id: 'userGroup_26_t',type:"user_group", description: 'test for description', name: 'm20 k2', firstName: null, lastName: null, email: null },])
     });
 
     it(`should be find the desired user according to the ID and return the user's data`, () => {
@@ -84,7 +89,7 @@ describe('SUT: UserDataService', () => {
         })
 
         // assert
-        expect(actual).toEqual({ id: 'a096aae1', firstName: 'm2', lastName: 'k2', email: 'm2@gmail.com', description: 'test for description', name: 'm2 k2' })
+        expect(actual).toEqual({ id: 'a096aae1', firstName: 'm2', lastName: 'k2',type:"user", email: 'm2@gmail.com', description: 'test for description', name: 'm2 k2' })
     });
 
 })

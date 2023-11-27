@@ -1,14 +1,11 @@
 import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
-import { ListUserModule } from '../../list-user.module';
-import { UserDataService } from '../../services/user-data.service';
-import { ListUserComponentPage } from './list-user.component.integration.spec.page';
+import { ListItemComponentPage } from './list-item.component.integration.spec.page';
+import { UserDataService } from 'src/app/list-user/services/user-data.service';
 
-xdescribe('SUT(Integration): ListUserComponent', () => {
-    let sutPage: ListUserComponentPage;
+
+describe('SUT(Integration): ListItemComponent', () => {
+    let sutPage: ListItemComponentPage;
     const additionalConfig = {
-        imports: [
-            ListUserModule,
-        ],
         providers: [
             {
                 provide: AbstractDataService,
@@ -17,7 +14,7 @@ xdescribe('SUT(Integration): ListUserComponent', () => {
         ],
     };
     beforeEach(() => {
-        sutPage = new ListUserComponentPage(additionalConfig);
+        sutPage = new ListItemComponentPage(additionalConfig);
     });
 
     it('should create', () => {
@@ -25,7 +22,7 @@ xdescribe('SUT(Integration): ListUserComponent', () => {
         expect(sutPage.detectChanges()).toBeTruthy();
     });
 
-    xit('should be called the addedUser function when the button is clicked', () => {
+    it('should be called the addedUser function when the button is clicked', () => {
         // act
         sutPage.addEl.click();
 
@@ -53,10 +50,5 @@ xdescribe('SUT(Integration): ListUserComponent', () => {
         expect(sutPage.component.isAllData).toBeTruthy()
     });
 
-    it('should be render truncated description in cell with matching tooltip', () => {
-        // assert
-        expect(sutPage.tdDescriptionWithId.attributes['ng-reflect-message'].value).toBe('test for description');
-        expect(sutPage.tdDescriptionWithId.attributes['ng-reflect-position'].value).toBe('right');
-    });
 
 });

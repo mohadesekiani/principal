@@ -4,20 +4,12 @@ import { BaseFormOprRD } from 'src/app/core/base-classes/base-form-opr-r-d';
 import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
 import { UserGroupTableHeaderEnum } from 'src/app/core/model/enum/user-group-table-heder';
 import { IUserGroup } from 'src/app/core/model/interface/user-group.interface';
-import { UserGroupDataService } from '../../services/user-group-data.service';
-import { TruncatePipe } from 'src/app/core/pipe-custom/truncate.pipe';
 
 @Component({
   selector: 'app-list-user-group',
   templateUrl: './list-user-group.component.html',
   styleUrls: ['./list-user-group.component.sass'],
-  providers: [
-    {
-      provide: AbstractDataService<IUserGroup>,
-      useExisting: UserGroupDataService,
-    },
-    TruncatePipe
-  ],
+  providers: [  ],
 })
 export class ListUserGroupComponent extends BaseFormOprRD<IUserGroup> {
   protected override resultUrlNewItem = '/user-group/new';
