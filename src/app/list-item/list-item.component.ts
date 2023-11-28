@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { BaseFormOprRD } from 'src/app/core/base-classes/base-form-opr-r-d';
+import { BaseListComponent } from 'src/app/core/base-classes/base-list-component';
 import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
 import { UserTableHeaderEnum } from 'src/app/core/model/enum/user-table-heder';
 import { IItem } from 'src/app/core/model/interface/user.interface';
@@ -10,7 +10,7 @@ import { IItem } from 'src/app/core/model/interface/user.interface';
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.sass']
 })
-export class ListItemComponent extends BaseFormOprRD<IItem> {
+export class ListItemComponent extends BaseListComponent<IItem> {
   urlAddNewUser = '/user/new';
   urlAddNewUserGroup = '/user-group/new';
   protected override resultUrlUpdateUser: string = '/user/';

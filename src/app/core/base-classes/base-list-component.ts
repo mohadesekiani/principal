@@ -4,7 +4,7 @@ import { AbstractDataService } from "../services/abstract-data-service";
 
 
 @Directive()
-export abstract class BaseFormOprRD<T>{
+export abstract class BaseListComponent<T>{
     loading = false
     allData: T[] = []
     protected resultUrlUpdateUserGroup!: string;
