@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseFormOprCU } from 'src/app/core/base-classes/base-form-opr-c-u';
-import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
+import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
 import { IForm } from 'src/app/core/model/interface/form-type.interface';
 import { IUserGroup } from 'src/app/core/model/interface/user-group.interface';
 import { UserGroupDataService } from '../../services/user-group-data.service';

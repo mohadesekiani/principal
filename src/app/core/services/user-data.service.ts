@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { first, Observable, of } from 'rxjs';
-import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
+import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
 import { IUser } from 'src/app/core/model/interface/user.interface';
 import * as fakeData from './mock-data';
 

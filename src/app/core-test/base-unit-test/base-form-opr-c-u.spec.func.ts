@@ -1,9 +1,8 @@
 import { ActivatedRoute, Router } from "@angular/router";
 import { of } from "rxjs";
-import { AbstractDataService } from "../../core/base-services/abstract-data-service";
-import { BaseFormOprCU } from "../../core/base-classes/base-form-opr-c-u";
-import { BaseFormOprRD } from "../../core/base-classes/base-form-opr-r-d";
 import { BaseBuilder } from "src/app/core-test/base-unit-test/base-builder";
+import { BaseFormOprCU } from "../../core/base-classes/base-form-opr-c-u";
+import { AbstractDataService } from "../../core/services/abstract-data-service";
 
 class MockDataService<T> extends AbstractDataService<T> {
     getAllData() {

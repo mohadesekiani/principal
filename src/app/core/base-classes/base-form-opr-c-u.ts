@@ -1,7 +1,7 @@
 import { Directive } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseForm } from './base-form';
-import { AbstractDataService } from '../base-services/abstract-data-service';
+import { AbstractDataService } from '../services/abstract-data-service';
 @Directive()
 export abstract class BaseFormOprCU<T> extends BaseForm<T> {
   isEditMode = false;

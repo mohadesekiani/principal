@@ -1,6 +1,6 @@
 import { Directive } from "@angular/core";
 import { Router } from "@angular/router";
-import { AbstractDataService } from "../base-services/abstract-data-service";
+import { AbstractDataService } from "../services/abstract-data-service";
 
 
 @Directive()

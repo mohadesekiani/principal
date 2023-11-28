@@ -2,7 +2,7 @@
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { listUserConst } from 'src/app/core-test/model/list-user.spec.const';
-import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
+import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
 import { UserTableHeaderEnum } from 'src/app/core/model/enum/user-table-heder';
 import { IUser } from 'src/app/core/model/interface/user.interface';
 import { ListItemComponent } from './list-item.component';

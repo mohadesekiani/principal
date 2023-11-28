@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, first, of } from 'rxjs';
-import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
+import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
 import { IUserGroup } from 'src/app/core/model/interface/user-group.interface';
 import * as fakData from './mock-data/index';
 

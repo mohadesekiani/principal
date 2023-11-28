@@ -1,5 +1,5 @@
 import { BaseBuilder } from "src/app/core-test/base-unit-test/base-builder";
-import { AbstractDataService } from "src/app/core/base-services/abstract-data-service";
+import { AbstractDataService } from "src/app/core/services/abstract-data-service";
 import { IUserGroup } from "src/app/core/model/interface/user-group.interface";
 import { FormUserGroupComponent } from "./form-user-group.component";
 

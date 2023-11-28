@@ -1,9 +1,9 @@
 
 import { of } from 'rxjs';
-import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
+import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
 import { formUserConst } from 'src/app/core-test/model/form-user.spec.const';
 import { IUser } from 'src/app/core/model/interface/user.interface';
-import * as fakeData from '../../services/mock-data/index';
+import * as fakeData from '../../../core/services/mock-data/index';
 import { FormUserComponent } from './form-user.component';
 import { FormUserFormBuilder } from './form-user.component.spec.builder';
 describe('SUT: FormUserComponent', () => {

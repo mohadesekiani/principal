@@ -1,6 +1,6 @@
-import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
+import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
 import { FormUserComponentPage } from './form-user.component.integration.spec.page';
-import { UserDataService } from '../../services/user-data.service';
+import { UserDataService } from '../../../core/services/user-data.service';
 
 describe('SUT(Integration): FormUserComponent', () => {
     let sutPage: FormUserComponentPage;

@@ -1,6 +1,6 @@
-import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
+import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
+import { UserDataService } from 'src/app/core/services/user-data.service';
 import { ListItemComponentPage } from './list-item.component.integration.spec.page';
-import { UserDataService } from 'src/app/list-user/services/user-data.service';
 
 
 describe('SUT(Integration): ListItemComponent', () => {

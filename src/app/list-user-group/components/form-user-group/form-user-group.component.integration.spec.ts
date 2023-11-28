@@ -1,4 +1,4 @@
-import { AbstractDataService } from 'src/app/core/base-services/abstract-data-service';
+import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
 import { FormUserGroupComponentPage } from './form-user-group.component.integration.spec.page';
 import { UserGroupDataService } from '../../services/user-group-data.service';
 
