@@ -31,9 +31,5 @@ export class ListItemComponentPage extends BasePage<ListItemComponent>{
     get editEl(): HTMLButtonElement {
         return TestUtil.nativeElement(this.fixture, '#edit')
     }
-    get tdDescriptionWithId() {
-        return TestUtil.debugElement(this.fixture, 'td[item-id="315768d5"]').nativeElement
-    }
-
 
 }
