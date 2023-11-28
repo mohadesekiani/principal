@@ -27,8 +27,8 @@ export class FormUserGroupComponent extends BaseFormOprCU<IUserGroup> {
     super(router, route, dataService);
   }
 
-  override addedItem(): void {
+  override addItem(): void {
     this.form.patchValue({ id: this.dataService.setId() });
-    super.addedItem();
+    super.addItem();
   }
 }

@@ -89,7 +89,7 @@ describe('SUT: FormUserGroupComponent', () => {
     sut = sutBuilder.with_some_invalid_data_for_form(formUserGroupConst.SomeInvalidFormUserGroup).build()
 
     // act
-    sut.addedItem();
+    sut.addItem();
 
     // assert
     expect(sut.form.valid).toBeFalsy()

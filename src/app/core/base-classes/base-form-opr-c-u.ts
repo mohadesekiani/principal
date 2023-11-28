@@ -53,11 +53,11 @@ export abstract class BaseFormOprCU<T> extends BaseForm<T> {
     if (this.isEditMode) {
       this.editItem();
     } else {
-      this.addedItem();
+      this.addItem();
     }
   }
 
-  addedItem() {
+  addItem() {
     if (!this.form.valid) {
       return;
     }

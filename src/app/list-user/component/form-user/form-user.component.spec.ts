@@ -102,7 +102,7 @@ describe('SUT: FormUserComponent', () => {
     sut = sutBuilder.with_some_invalid_data_for_form(formUserConst.SomeInvalidFormUser).build();
 
     // act
-    sut.addedItem()
+    sut.addItem()
 
     // assert
     expect(sut.form.valid).toBeFalsy()
