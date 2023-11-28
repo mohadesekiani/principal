@@ -73,9 +73,18 @@ describe('SUT: ListItemComponent', () => {
 
   it('should be when the add button is clicked ,go to the add new user form', () => {
     // act
-    sut.addedItem()
+    sut.navigatePath(sut.urlAddNewUser)
 
     // assert
     expect(router.navigate).toHaveBeenCalledWith(['/user/new']);
   });
+
+  it('should be when the add button is clicked ,go to the add new userGroup form', () => {
+    // act
+    sut.navigatePath(sut.urlAddNewUserGroup)
+
+    // assert
+    expect(router.navigate).toHaveBeenCalledWith(['/user-group/new']);
+  });
+
 });

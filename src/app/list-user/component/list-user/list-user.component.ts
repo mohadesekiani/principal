@@ -19,7 +19,6 @@ import { UserDataService } from '../../services/user-data.service';
   ],
 })
 export class ListUserComponent extends BaseFormOprRD<IUser> {
-  protected override resultUrlNewItem = '/user/new';
   protected override resultUrlUpdateItem: string = '/user/';
   itemHeader = Object.values(UserTableHeaderEnum).map((value) => ({
       title: value.replace(/([a-z])([A-Z])/g, '$1 $2'),

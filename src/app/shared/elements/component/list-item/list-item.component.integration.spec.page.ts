@@ -7,13 +7,19 @@ export class ListItemComponentPage extends BasePage<ListItemComponent>{
 
     constructor(additionalConfig?: any) {
         super(ListItemComponent, additionalConfig);
-        spyOn(this.component, 'addedItem');
+        spyOn(this.component, 'navigatePath');
         spyOn(this.component, 'editItem');
         spyOn(this.component, 'deletedItem');
     }
 
     get addEl(): HTMLButtonElement {
         return TestUtil.nativeElement(this.fixture, '#add')
+    }
+    get userButtonEl(): HTMLButtonElement {
+        return TestUtil.nativeElement(this.fixture, '#user')
+    }
+    get userGroupButtonEl(): HTMLButtonElement {
+        return TestUtil.nativeElement(this.fixture, '#user-group')
     }
     get deleteEl(): HTMLButtonElement {
         return TestUtil.nativeElement(this.fixture, '#delete')

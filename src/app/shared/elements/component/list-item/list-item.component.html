@@ -6,8 +6,8 @@
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 id="add">add +</button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>user</button>
-            <button mat-menu-item>userGroup</button>
+            <button mat-menu-item id="user" (click)="navigatePath(urlAddNewUser)">user</button>
+            <button mat-menu-item id="user-group" (click)="navigatePath(urlAddNewUserGroup)">userGroup</button>
         </mat-menu>
 
     </div>

@@ -25,9 +25,10 @@ describe('SUT(Integration): ListItemComponent', () => {
     it('should be called the addedUser function when the button is clicked', () => {
         // act
         sutPage.addEl.click();
+        sutPage.userButtonEl.click()
 
         // assert
-        expect(sutPage.component.addedItem).toHaveBeenCalled();
+        expect(sutPage.component.navigatePath).toHaveBeenCalled();
     });
 
     it('should be called the deletedUser function when the button is clicked', () => {

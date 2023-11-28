@@ -6,7 +6,7 @@ export class ListUserComponentPage extends BasePage<ListUserComponent>{
 
     constructor(additionalConfig?: any) {
         super(ListUserComponent, additionalConfig);
-        spyOn(this.component, 'addedItem');
+        // spyOn(this.component, 'addedItem');
         spyOn(this.component, 'editItem');
         spyOn(this.component, 'deletedItem');
     }

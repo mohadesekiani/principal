@@ -12,7 +12,7 @@ import { IUserGroup } from 'src/app/core/model/interface/user-group.interface';
   providers: [  ],
 })
 export class ListUserGroupComponent extends BaseFormOprRD<IUserGroup> {
-  protected override resultUrlNewItem = '/user-group/new';
+  // protected override resultUrlNewItem = '/user-group/new';
   protected override resultUrlUpdateItem: string = '/user-group/';
   itemHeader = Object.values(UserGroupTableHeaderEnum).map((value) => ({
     title: value.replace(/([a-z])([A-Z])/g, '$1 $2'),

@@ -7,7 +7,6 @@ import { AbstractDataService } from "../base-services/abstract-data-service";
 export abstract class BaseFormOprRD<T>{
     loading = false
     allData: T[] = []
-    protected resultUrlNewItem!: string;
     protected resultUrlUpdateItem!: string;
 
 
@@ -50,10 +49,11 @@ export abstract class BaseFormOprRD<T>{
         this.router.navigate([this.resultUrlUpdateItem, itemId]);
     }
 
-    addedItem() {
-        this.router.navigate([this.resultUrlNewItem]);
+    navigatePath(path: string) {
+        this.router.navigate([path]);
     }
-// has data
+
+    // has data
     isAllData() {
         return this.allData.length > 0
     }

@@ -5,7 +5,7 @@ import { TestUtil } from "src/app/core-test/utils/test-util";
 export class ListUserGroupComponentPage extends BasePage<ListUserGroupComponent>{
     constructor(additionalConfig?: any) {
         super(ListUserGroupComponent, additionalConfig);
-        spyOn(this.component, 'addedItem');
+        // spyOn(this.component, 'addedItem');
         spyOn(this.component, 'editItem');
         spyOn(this.component, 'deletedItem');
     }
