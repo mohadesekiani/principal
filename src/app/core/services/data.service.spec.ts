@@ -1,11 +1,11 @@
 import { IItem } from "src/app/core/model/interface/user.interface";
-import { UserDataService } from "./user-data.service"
+import { DataService } from "./data.service"
 import * as fakData from './mock-data/index'
 
 describe('SUT: UserDataService', () => {
-    let sut: UserDataService;
+    let sut: DataService;
     beforeEach(() => {
-        sut = new UserDataService();
+        sut = new DataService();
     })
     it('should be create', () => {
         // assert
@@ -22,7 +22,7 @@ describe('SUT: UserDataService', () => {
         })
 
         // assert
-        expect(actual).toEqual(fakData.users)
+        expect(actual).toEqual(fakData.items)
     });
 
     it('should be deleted the data with the desired userId ', () => {

@@ -1,5 +1,5 @@
 import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
-import { UserDataService } from 'src/app/core/services/user-data.service';
+import { DataService } from 'src/app/core/services/data.service';
 import { ListItemComponentPage } from './list-item.component.integration.spec.page';
 
 
@@ -9,7 +9,7 @@ describe('SUT(Integration): ListItemComponent', () => {
         providers: [
             {
                 provide: AbstractDataService,
-                useClass: UserDataService,
+                useClass: DataService,
             },
         ],
     };

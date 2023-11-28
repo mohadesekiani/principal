@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AbstractDataService } from './core/services/abstract-data-service';
-import { UserDataService } from './core/services/user-data.service';
+import { DataService } from './core/services/data.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -12,7 +12,7 @@ import { UserDataService } from './core/services/user-data.service';
   providers: [
     {
       provide: AbstractDataService,
-      useClass: UserDataService,
+      useClass: DataService,
     },
   ],
   bootstrap: [AppComponent],

@@ -1,6 +1,6 @@
 import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
 import { FormUserComponentPage } from './form-user.component.integration.spec.page';
-import { UserDataService } from '../../../core/services/user-data.service';
+import { DataService } from '../../../core/services/data.service';
 
 describe('SUT(Integration): FormUserComponent', () => {
     let sutPage: FormUserComponentPage;
@@ -8,7 +8,7 @@ describe('SUT(Integration): FormUserComponent', () => {
         providers: [
             {
                 provide: AbstractDataService,
-                useClass: UserDataService,
+                useClass: DataService,
             }
         ],
     };

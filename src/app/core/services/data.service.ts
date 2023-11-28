@@ -5,8 +5,8 @@ import { IItem } from 'src/app/core/model/interface/user.interface';
 import * as fakeData from './mock-data';
 
 @Injectable({ providedIn: 'root' })
-export class UserDataService extends AbstractDataService {
-  private myData: IItem[] = [...fakeData.users];
+export class DataService extends AbstractDataService {
+  private myData: IItem[] = [...fakeData.items];
 
   constructor() {
     super();

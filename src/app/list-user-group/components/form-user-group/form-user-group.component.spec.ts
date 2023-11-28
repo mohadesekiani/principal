@@ -1,11 +1,10 @@
 import { of } from "rxjs";
 import { formUserGroupConst } from "src/app/core-test/model/form-user-group.spec.const";
+import { IItem } from "src/app/core/model/interface/user.interface";
 import { AbstractDataService } from "src/app/core/services/abstract-data-service";
-import { IUserGroup } from "src/app/core/model/interface/user-group.interface";
-import * as fakeData from '../../services/mock-data/index';
+import * as fakeData from '../../../core/services/mock-data/index';
 import { FormUserGroupComponent } from "./form-user-group.component";
 import { FormUserGroupFormBuilder } from "./form-user-group.component.spec.builder";
-import { IItem } from "src/app/core/model/interface/user.interface";
 
 describe('SUT: FormUserGroupComponent', () => {
   let sut: FormUserGroupComponent;
