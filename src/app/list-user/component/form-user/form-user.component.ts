@@ -5,17 +5,11 @@ import { BaseFormOprCU } from 'src/app/core/base-classes/base-form-opr-c-u';
 import { IForm } from 'src/app/core/model/interface/form-type.interface';
 import { IItem } from 'src/app/core/model/interface/user.interface';
 import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
-import { UserDataService } from '../../../core/services/user-data.service';
 @Component({
   selector: 'app-form-user',
   templateUrl: './form-user.component.html',
   styleUrls: ['./form-user.component.sass'],
-  providers: [
-    {
-      provide: AbstractDataService,
-      useExisting: UserDataService,
-    },
-  ],
+
 })
 export class FormUserComponent extends BaseFormOprCU<IItem> {
   protected override resultUrl = '/user';
