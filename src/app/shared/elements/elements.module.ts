@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MaterialModule } from "src/app/material/material.module";
 import { NgModule } from "@angular/core";
-import { ListItemComponent } from "./component/list-item/list-item.component";
+import { ListItemComponent } from "../../list-item/list-item.component";
 
 const COMPONENTS = [
     ListItemComponent
