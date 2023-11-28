@@ -5,7 +5,7 @@ import { IUserGroup } from 'src/app/core/model/interface/user-group.interface';
 import * as fakData from './mock-data/index';
 
 @Injectable({ providedIn: 'root' })
-export class UserGroupDataService extends AbstractDataService<IUserGroup> {
+export class UserGroupDataService extends AbstractDataService {
   private myData = [...fakData.userGroups];
 
   constructor() {

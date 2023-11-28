@@ -4,17 +4,17 @@ import { of } from 'rxjs';
 import { listUserConst } from 'src/app/core-test/model/list-user.spec.const';
 import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
 import { UserTableHeaderEnum } from 'src/app/core/model/enum/user-table-heder';
-import { IUser } from 'src/app/core/model/interface/user.interface';
+import { IItem } from 'src/app/core/model/interface/user.interface';
 import { ListItemComponent } from './list-item.component';
 
 describe('SUT: ListItemComponent', () => {
   let sut: ListItemComponent;
   let router: jasmine.SpyObj<Router>;
-  let userDataService: jasmine.SpyObj<AbstractDataService<IUser>>;
-  const fakeUsers: IUser[] = listUserConst.fakeUser;
+  let userDataService: jasmine.SpyObj<AbstractDataService>;
+  const fakeUsers: IItem[] = listUserConst.fakeUser;
 
   beforeEach(() => {
-    userDataService = jasmine.createSpyObj<AbstractDataService<IUser>>({
+    userDataService = jasmine.createSpyObj<AbstractDataService>({
       getAllData: of(fakeUsers),
       deleteData: of(fakeUsers),
     });

@@ -1,4 +1,4 @@
-export interface IUser {
+export interface IItem {
   id: string;
   firstName: string | null;
   type:string;

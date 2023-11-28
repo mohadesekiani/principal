@@ -11,7 +11,7 @@ export abstract class BaseFormOprRD<T>{
     protected resultUrlUpdateUser!: string;
 
 
-    constructor(protected router: Router, protected dataService: AbstractDataService<T>) {
+    constructor(protected router: Router, protected dataService: AbstractDataService) {
         if (!router) { throw new Error('router is null'); }
         if (!dataService) { throw new Error('dataService is null'); }
     }

@@ -2,6 +2,7 @@ import { Directive } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseForm } from './base-form';
 import { AbstractDataService } from '../services/abstract-data-service';
+import { IItem } from '../model/interface/user.interface';
 @Directive()
 export abstract class BaseFormOprCU<T> extends BaseForm<T> {
   isEditMode = false;
@@ -12,7 +13,7 @@ export abstract class BaseFormOprCU<T> extends BaseForm<T> {
   constructor(
     router: Router,
     protected route: ActivatedRoute,
-    protected dataService: AbstractDataService<T>
+    protected dataService: AbstractDataService
   ) {
     super(router);
     if (!route) {
@@ -60,7 +61,7 @@ export abstract class BaseFormOprCU<T> extends BaseForm<T> {
     if (!this.form.valid) {
       return;
     }
-    this.dataService.addedData(this.form.value as T).subscribe({
+    this.dataService.addedData(this.form.value as IItem).subscribe({
       next: (res) => {},
     });
   }
@@ -69,7 +70,7 @@ export abstract class BaseFormOprCU<T> extends BaseForm<T> {
     if (!this.form.valid) {
       return;
     }
-    this.dataService.editData(this.itemId, this.form.value as T).subscribe({
+    this.dataService.editData(this.itemId, this.form.value as IItem).subscribe({
       next: (res) => {
       },
     });

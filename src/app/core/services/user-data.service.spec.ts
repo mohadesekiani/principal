@@ -1,4 +1,4 @@
-import { IUser } from "src/app/core/model/interface/user.interface";
+import { IItem } from "src/app/core/model/interface/user.interface";
 import { UserDataService } from "./user-data.service"
 import * as fakData from './mock-data/index'
 
@@ -14,7 +14,7 @@ describe('SUT: UserDataService', () => {
 
     it('should be returned all data user', () => {
         // arrange
-        let actual: IUser[] = []
+        let actual: IItem[] = []
 
         // act
         sut.getAllData().subscribe((res) => {
@@ -27,7 +27,7 @@ describe('SUT: UserDataService', () => {
 
     it('should be deleted the data with the desired userId ', () => {
         // arrange
-        let actual: IUser[] = []
+        let actual: IItem[] = []
 
         // act
         sut.deleteData('315768d5').subscribe((res) => {
@@ -43,7 +43,7 @@ describe('SUT: UserDataService', () => {
 
     it('should be added new user to the list of users', () => {
         // arrange
-        let actual: IUser[] = []
+        let actual: IItem[] = []
         const newUser = {
             id: 'a096aae2', type: "user", firstName: 'm3', lastName: 'k3', email: 'm3@gmail.com', description: 'test for description', name: 'm3 k3'
         }
@@ -65,8 +65,8 @@ describe('SUT: UserDataService', () => {
 
     it('should be updated user information', () => {
         // arrange
-        let actual: IUser[] = []
-        const updateUser: IUser = { id: '315768d5', type: "user", firstName: 'mo2', lastName: 'ki2', email: 'm1@gmail.com', description: 'test for description', name: 'mo2 ki2' }
+        let actual: IItem[] = []
+        const updateUser: IItem = { id: '315768d5', type: "user", firstName: 'mo2', lastName: 'ki2', email: 'm1@gmail.com', description: 'test for description', name: 'mo2 ki2' }
 
         // act
         sut.editData('315768d5', updateUser).subscribe((res) => {
@@ -83,7 +83,7 @@ describe('SUT: UserDataService', () => {
 
     it(`should be find the desired user according to the ID and return the user's data`, () => {
         // arrange
-        let actual!: IUser
+        let actual!: IItem
 
         // act
         sut.getByID('a096aae1').subscribe((res) => {

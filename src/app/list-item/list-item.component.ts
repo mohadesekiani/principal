@@ -3,14 +3,14 @@ import { Router } from '@angular/router';
 import { BaseFormOprRD } from 'src/app/core/base-classes/base-form-opr-r-d';
 import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
 import { UserTableHeaderEnum } from 'src/app/core/model/enum/user-table-heder';
-import { IUser } from 'src/app/core/model/interface/user.interface';
+import { IItem } from 'src/app/core/model/interface/user.interface';
 
 @Component({
   selector: 'app-list-item',
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.sass']
 })
-export class ListItemComponent extends BaseFormOprRD<IUser> {
+export class ListItemComponent extends BaseFormOprRD<IItem> {
   urlAddNewUser = '/user/new';
   urlAddNewUserGroup = '/user-group/new';
   protected override resultUrlUpdateUser: string = '/user/';
@@ -20,7 +20,7 @@ export class ListItemComponent extends BaseFormOprRD<IUser> {
     value,
   }));
 
-  constructor(router: Router, dataService: AbstractDataService<IUser>) {
+  constructor(router: Router, dataService: AbstractDataService) {
     super(router, dataService);
   }
 }

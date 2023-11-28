@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AbstractDataService } from './core/services/abstract-data-service';
-import { IUser } from './core/model/interface/user.interface';
 import { UserDataService } from './core/services/user-data.service';
 
 @NgModule({
@@ -12,10 +11,10 @@ import { UserDataService } from './core/services/user-data.service';
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
   providers: [
     {
-      provide: AbstractDataService<IUser>,
+      provide: AbstractDataService,
       useClass: UserDataService,
     },
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

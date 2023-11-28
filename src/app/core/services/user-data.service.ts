@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { first, Observable, of } from 'rxjs';
 import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
-import { IUser } from 'src/app/core/model/interface/user.interface';
+import { IItem } from 'src/app/core/model/interface/user.interface';
 import * as fakeData from './mock-data';
 
 @Injectable({ providedIn: 'root' })
-export class UserDataService extends AbstractDataService<IUser> {
-  private myData: IUser[] = [...fakeData.users];
+export class UserDataService extends AbstractDataService {
+  private myData: IItem[] = [...fakeData.users];
 
   constructor() {
     super();
@@ -22,12 +22,12 @@ export class UserDataService extends AbstractDataService<IUser> {
     return of(this.myData);
   }
 
-  addedData(newUser: IUser): Observable<any> {
+  addedData(newUser: IItem): Observable<any> {
     this.myData.push(newUser);
     return of(this.myData);
   }
 
-  editData(userId: string, updatedUserData: IUser): Observable<any> {
+  editData(userId: string, updatedUserData: IItem): Observable<any> {
     // const userIndex = this.myData.findIndex((user) => user.id === userId);
     let newData = this.myData.map((user) => {
       if (user.id === userId) {

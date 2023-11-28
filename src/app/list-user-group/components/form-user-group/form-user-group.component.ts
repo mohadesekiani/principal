@@ -13,7 +13,7 @@ import { UserGroupDataService } from '../../services/user-group-data.service';
   styleUrls: ['./form-user-group.component.sass'],
   providers: [
     {
-      provide: AbstractDataService<IUserGroup>,
+      provide: AbstractDataService,
       useExisting: UserGroupDataService,
     },
   ],
@@ -29,7 +29,7 @@ export class FormUserGroupComponent extends BaseFormOprCU<IUserGroup> {
   constructor(
     router: Router,
     route: ActivatedRoute,
-    dataService: AbstractDataService<IUserGroup>
+    dataService: AbstractDataService
   ) {
     super(router, route, dataService);
   }

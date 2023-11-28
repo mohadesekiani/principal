@@ -5,14 +5,15 @@ import { IUserGroup } from "src/app/core/model/interface/user-group.interface";
 import * as fakeData from '../../services/mock-data/index';
 import { FormUserGroupComponent } from "./form-user-group.component";
 import { FormUserGroupFormBuilder } from "./form-user-group.component.spec.builder";
+import { IItem } from "src/app/core/model/interface/user.interface";
 
 describe('SUT: FormUserGroupComponent', () => {
   let sut: FormUserGroupComponent;
-  let userGroupDataService: jasmine.SpyObj<AbstractDataService<IUserGroup>>;
+  let userGroupDataService: jasmine.SpyObj<AbstractDataService>;
   let sutBuilder: FormUserGroupFormBuilder;
 
   beforeEach(() => {
-    userGroupDataService = jasmine.createSpyObj<AbstractDataService<IUserGroup>>({
+    userGroupDataService = jasmine.createSpyObj<AbstractDataService>({
       addedData: of(fakeData),
       getByID: of(formUserGroupConst.FormUserGroupWithParams),
       editData: of(formUserGroupConst.FormUserGroupWithParams),
@@ -80,7 +81,7 @@ describe('SUT: FormUserGroupComponent', () => {
 
     // assert
     expect(sut.form.controls.id.value).not.toBe('')
-    expect(userGroupDataService.addedData).toHaveBeenCalledWith(sut.form.value as IUserGroup);
+    expect(userGroupDataService.addedData).toHaveBeenCalledWith(sut.form.value as IItem);
     expect(sutBuilder.router.navigate).toHaveBeenCalledWith(['/user-group']);
   });
 
@@ -110,7 +111,7 @@ describe('SUT: FormUserGroupComponent', () => {
     // assert
     expect(sut.form.controls.id.value).toBe('123')
     expect(sut.form.controls.name.value).toBe('m4 k4')
-    expect(userGroupDataService.editData).toHaveBeenCalledWith('123', sut.form.value as IUserGroup);
+    expect(userGroupDataService.editData).toHaveBeenCalledWith('123', sut.form.value as IItem);
     expect(sutBuilder.router.navigate).toHaveBeenCalledWith(['/user-group']);
   });
 

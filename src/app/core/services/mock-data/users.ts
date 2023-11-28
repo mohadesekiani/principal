@@ -1,6 +1,6 @@
-import { IUser } from "src/app/core/model/interface/user.interface";
+import { IItem } from "src/app/core/model/interface/user.interface";
 
-export let users: IUser[] = [
+export let users: IItem[] = [
   {
     id: '315768d5', type: 'user', firstName: 'm1', lastName: 'k1', email: 'm1@gmail.com', description: 'test for description', name: 'm1 k1'
   },

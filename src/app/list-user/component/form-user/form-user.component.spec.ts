@@ -1,19 +1,19 @@
 
 import { of } from 'rxjs';
-import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
 import { formUserConst } from 'src/app/core-test/model/form-user.spec.const';
-import { IUser } from 'src/app/core/model/interface/user.interface';
+import { IItem } from 'src/app/core/model/interface/user.interface';
+import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
 import * as fakeData from '../../../core/services/mock-data/index';
 import { FormUserComponent } from './form-user.component';
 import { FormUserFormBuilder } from './form-user.component.spec.builder';
 describe('SUT: FormUserComponent', () => {
   let sut: FormUserComponent;
-  let userDataService: jasmine.SpyObj<AbstractDataService<IUser>>;
+  let userDataService: jasmine.SpyObj<AbstractDataService>;
   let sutBuilder: FormUserFormBuilder
 
 
   beforeEach(() => {
-    userDataService = jasmine.createSpyObj<AbstractDataService<IUser>>({
+    userDataService = jasmine.createSpyObj<AbstractDataService>({
       addedData: of(fakeData),
       getByID: of(formUserConst.FormUserWithParams),
       editData: of(formUserConst.FormUserWithParams),
@@ -93,7 +93,7 @@ describe('SUT: FormUserComponent', () => {
 
     // assert
     expect(sut.form.controls.id.value).not.toBe('')
-    expect(userDataService.addedData).toHaveBeenCalledWith(sut.form.value as IUser);
+    expect(userDataService.addedData).toHaveBeenCalledWith(sut.form.value as IItem);
     expect(sutBuilder.router.navigate).toHaveBeenCalledWith(['/user']);
   });
 
@@ -123,7 +123,7 @@ describe('SUT: FormUserComponent', () => {
     // assert
     expect(sut.form.controls.id.value).toBe('123')
     expect(sut.form.controls.lastName.value).toBe('m4')
-    expect(userDataService.editData).toHaveBeenCalledWith('123', sut.form.value as IUser);
+    expect(userDataService.editData).toHaveBeenCalledWith('123', sut.form.value as IItem);
     expect(sutBuilder.router.navigate).toHaveBeenCalledWith(['/user']);
   });
 
