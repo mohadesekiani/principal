@@ -2,16 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { FormUserGroupComponent } from './components/form-user-group/form-user-group.component';
-import { ListUserGroupComponent } from './components/list-user-group/list-user-group.component';
 
 @NgModule({
-  declarations: [FormUserGroupComponent, ListUserGroupComponent],
+  declarations: [FormUserGroupComponent],
   imports: [CommonModule, SharedModule],
-  providers: [
-    // {
-    //   provide: AbstractDataService<IUserGroup>,
-    //   useClass: UserGroupDataService,
-    // },
-  ],
+  providers: [],
 })
-export class ListUserGroupModule {}
+export class ListUserGroupModule { }
