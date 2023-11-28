@@ -5,6 +5,7 @@ import { BaseFormOprCU } from 'src/app/core/base-classes/base-form-opr-c-u';
 import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
 import { IForm } from 'src/app/core/model/interface/form-type.interface';
 import { IUserGroup } from 'src/app/core/model/interface/user-group.interface';
+import { ItemTypeEnum } from 'src/app/core/model/enum/itemType';
 
 @Component({
   selector: 'app-form-user-group',
@@ -17,6 +18,7 @@ export class FormUserGroupComponent extends BaseFormOprCU<IUserGroup> {
     id: [null],
     name: [null, Validators.required],
     description: [null, Validators.required],
+    type:[ItemTypeEnum.UserGroup]
   };
 
   constructor(

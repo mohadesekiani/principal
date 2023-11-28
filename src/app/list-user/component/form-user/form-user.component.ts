@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseFormOprCU } from 'src/app/core/base-classes/base-form-opr-c-u';
+import { ItemTypeEnum } from 'src/app/core/model/enum/itemType';
 import { IForm } from 'src/app/core/model/interface/form-type.interface';
 import { IItem } from 'src/app/core/model/interface/user.interface';
 import { AbstractDataService } from 'src/app/core/services/abstract-data-service';
@@ -20,6 +21,7 @@ export class FormUserComponent extends BaseFormOprCU<IItem> {
     email: [null, [Validators.required, Validators.email]],
     name: [null, Validators.required],
     description: [null, Validators.required],
+    type: [ItemTypeEnum.User],
   };
 
   constructor(

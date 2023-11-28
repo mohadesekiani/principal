@@ -1,3 +1,4 @@
+import { ItemTypeEnum } from "src/app/core/model/enum/itemType"
 
 
 export class formUserGroupConst {
@@ -19,13 +20,14 @@ export class formUserGroupConst {
         return {
             id: null,
             description: null,
-            name: null
+            name: null,
+            type:ItemTypeEnum.UserGroup
         }
 
     }
     static get FormUserGroupWithParams() {
         return {
-            id: '123', description: 'test for description', name: 'Doe John'
+            id: '123', description: 'test for description', name: 'Doe John',type:ItemTypeEnum.UserGroup
         }
 
     }

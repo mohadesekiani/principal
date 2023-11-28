@@ -1,3 +1,4 @@
+import { ItemTypeEnum } from "src/app/core/model/enum/itemType"
 
 
 export class formUserConst {
@@ -14,7 +15,7 @@ export class formUserConst {
     }
     static get FormUserWithParams() {
         return {
-            id: '123', lastName: 'm3', firstName: 'k3', email: 'john.doe@example.com', description: 'test for description', name: 'm3 k3'
+            id: '123', lastName: 'm3',type:ItemTypeEnum.User, firstName: 'k3', email: 'john.doe@example.com', description: 'test for description', name: 'm3 k3'
         }
 
     }
@@ -36,7 +37,8 @@ export class formUserConst {
             firstName: null,
             email: null,
             description: null,
-            name: null
+            name: null,
+            type:ItemTypeEnum.User
         }
 
     }
