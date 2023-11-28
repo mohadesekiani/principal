@@ -54,7 +54,7 @@ export abstract class BaseListComponent<T>{
     }
 
     // has data
-    isAllData() {
+    hasData() {
         return this.allData.length > 0
     }
 }

@@ -67,7 +67,7 @@ describe('SUT(Integration): ListItemComponent', () => {
     });
 
     it('should be true when the value of allData is greater than zero', () => {
-        expect(sutPage.component.isAllData).toBeTruthy()
+        expect(sutPage.component.hasData).toBeTruthy()
     });
 
 
