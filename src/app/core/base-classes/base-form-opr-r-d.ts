@@ -27,9 +27,6 @@ export abstract class BaseFormOprRD<T>{
             next: (res) => {
                 this.allData = res
                 this.loading = false
-            },
-            error: (err) => {
-                this.loading = false
             }
         })
     }
@@ -39,9 +36,6 @@ export abstract class BaseFormOprRD<T>{
         this.dataService.deleteData(itemId).subscribe({
             next: () => {
                 this.receivedAllData();
-            },
-            error: (err) => {
-                this.loading = false;
             },
         });
     }
