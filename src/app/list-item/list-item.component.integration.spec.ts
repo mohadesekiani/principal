@@ -55,7 +55,7 @@ describe('SUT(Integration): ListItemComponent', () => {
         sutPage.deleteEl.click();
 
         // assert
-        expect(sutPage.component.deletedItem).toHaveBeenCalled();
+        expect(sutPage.component.deleteItem).toHaveBeenCalled();
     });
 
     it('should be called the editUser function when the button is clicked', () => {

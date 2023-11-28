@@ -31,7 +31,7 @@ export abstract class BaseListComponent<T>{
         })
     }
 
-    deletedItem(itemId: string) {
+    deleteItem(itemId: string) {
         this.loading = true;
         this.dataService.deleteData(itemId).subscribe({
             next: () => {

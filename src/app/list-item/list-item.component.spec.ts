@@ -54,7 +54,7 @@ describe('SUT: ListItemComponent', () => {
     userDataService.getAllData.and.returnValues(of([fakeUsers[0]]));
 
     // act
-    sut.deletedItem('315768d5');
+    sut.deleteItem('315768d5');
 
     // assert
     expect(userDataService.deleteData).toHaveBeenCalledWith('315768d5')

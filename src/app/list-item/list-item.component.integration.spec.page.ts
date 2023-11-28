@@ -10,7 +10,7 @@ export class ListItemComponentPage extends BasePage<ListItemComponent>{
         super(ListItemComponent, additionalConfig);
         spyOn(this.component, 'navigatePath');
         spyOn(this.component, 'editItem');
-        spyOn(this.component, 'deletedItem');
+        spyOn(this.component, 'deleteItem');
     }
 
     get addButtonEl(): HTMLButtonElement {
