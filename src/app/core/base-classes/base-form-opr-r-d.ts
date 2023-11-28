@@ -7,7 +7,8 @@ import { AbstractDataService } from "../base-services/abstract-data-service";
 export abstract class BaseFormOprRD<T>{
     loading = false
     allData: T[] = []
-    protected resultUrlUpdateItem!: string;
+    protected resultUrlUpdateUserGroup!: string;
+    protected resultUrlUpdateUser!: string;
 
 
     constructor(protected router: Router, protected dataService: AbstractDataService<T>) {
@@ -45,12 +46,17 @@ export abstract class BaseFormOprRD<T>{
         });
     }
 
-    editItem(itemId: string) {
-        this.router.navigate([this.resultUrlUpdateItem, itemId]);
+    editItem(itemId: string, itemType: string) {
+        if (itemType === 'user_group') {
+            this.navigatePath(this.resultUrlUpdateUserGroup, itemId)
+        }
+        if (itemType === 'user') {
+            this.navigatePath(this.resultUrlUpdateUser, itemId)
+        }
     }
 
-    navigatePath(path: string) {
-        this.router.navigate([path]);
+    navigatePath(path: string, itemId?: string) {
+        itemId ? this.router.navigate([path, itemId]) : this.router.navigate([path]);
     }
 
     // has data

@@ -61,13 +61,13 @@ xdescribe('SUT: ListUserGroupComponent', () => {
   });
 
 
-  it('should be when the edit button is clicked, it will go to the edit form with the userGroup ID', () => {
-    // act
-    sut.editItem('userGroup_23_k')
+  // it('should be when the edit button is clicked, it will go to the edit form with the userGroup ID', () => {
+  //   // act
+  //   sut.editItem('userGroup_23_k')
 
-    // assert
-    expect(router.navigate).toHaveBeenCalledWith(['/user-group/', 'userGroup_23_k']);
-  });
+  //   // assert
+  //   expect(router.navigate).toHaveBeenCalledWith(['/user-group/', 'userGroup_23_k']);
+  // });
 
   it('should be when the add button is clicked ,go to the add new userGroup form', () => {
     // act

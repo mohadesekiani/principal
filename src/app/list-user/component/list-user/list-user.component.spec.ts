@@ -63,13 +63,13 @@ xdescribe('SUT: ListUserComponent', () => {
     expect(sut.loading).toBe(false);
   });
 
-  it('should be when the edit button is clicked, it will go to the edit form with the user ID', () => {
-    // act
-    sut.editItem('315768d5')
+  // it('should be when the edit button is clicked, it will go to the edit form with the user ID', () => {
+  //   // act
+  //   sut.editItem('315768d5')
 
-    // assert
-    expect(router.navigate).toHaveBeenCalledWith(['/user/', '315768d5']);
-  });
+  //   // assert
+  //   expect(router.navigate).toHaveBeenCalledWith(['/user/', '315768d5']);
+  // });
 
   it('should be when the add button is clicked ,go to the add new user form', () => {
     // act

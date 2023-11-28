@@ -13,7 +13,8 @@ import { IUser } from 'src/app/core/model/interface/user.interface';
 export class ListItemComponent extends BaseFormOprRD<IUser> {
   urlAddNewUser = '/user/new';
   urlAddNewUserGroup = '/user-group/new';
-  protected override resultUrlUpdateItem: string = '/user/';
+  protected override resultUrlUpdateUser: string = '/user/';
+  protected override resultUrlUpdateUserGroup: string = '/user-group/';
   itemHeader = Object.values(UserTableHeaderEnum).map((value) => ({
     title: value.replace(/([a-z])([A-Z])/g, '$1 $2'),
     value,

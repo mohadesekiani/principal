@@ -11,7 +11,7 @@ describe('SUT: ListItemComponent', () => {
   let sut: ListItemComponent;
   let router: jasmine.SpyObj<Router>;
   let userDataService: jasmine.SpyObj<AbstractDataService<IUser>>;
-  const fakeUsers: IUser[] =listUserConst.fakeUser;
+  const fakeUsers: IUser[] = listUserConst.fakeUser;
 
   beforeEach(() => {
     userDataService = jasmine.createSpyObj<AbstractDataService<IUser>>({
@@ -63,12 +63,20 @@ describe('SUT: ListItemComponent', () => {
     expect(sut.loading).toBe(false);
   });
 
-  it('should be when the edit button is clicked, it will go to the edit form with the user ID', () => {
+  it('should be when the edit button is clicked, it will go to the edit form with the user ID and type === user', () => {
     // act
-    sut.editItem('315768d5')
+    sut.editItem('315768d5', 'user')
 
     // assert
     expect(router.navigate).toHaveBeenCalledWith(['/user/', '315768d5']);
+  });
+
+  it('should be when the edit button is clicked, it will go to the edit form with the user ID and type === user_group', () => {
+    // act
+    sut.editItem('userGroup_26_t', 'user_group')
+
+    // assert
+    expect(router.navigate).toHaveBeenCalledWith(['/user-group/', 'userGroup_26_t']);
   });
 
   it('should be when the add button is clicked ,go to the add new user form', () => {

@@ -1,6 +1,7 @@
 import { BasePage } from "src/app/core-test/base-integration-test/base-page";
 import { ListItemComponent } from "./list-item.component";
 import { TestUtil } from "src/app/core-test/utils/test-util";
+import { MatMenu } from "@angular/material/menu";
 
 
 export class ListItemComponentPage extends BasePage<ListItemComponent>{
@@ -12,8 +13,11 @@ export class ListItemComponentPage extends BasePage<ListItemComponent>{
         spyOn(this.component, 'deletedItem');
     }
 
-    get addEl(): HTMLButtonElement {
+    get addButtonEl(): HTMLButtonElement {
         return TestUtil.nativeElement(this.fixture, '#add')
+    }
+    get menuElement() {
+        return TestUtil.directiveElement(this.fixture, MatMenu)
     }
     get userButtonEl(): HTMLButtonElement {
         return TestUtil.nativeElement(this.fixture, '#user')

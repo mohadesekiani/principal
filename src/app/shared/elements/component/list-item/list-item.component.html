@@ -6,8 +6,12 @@
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 id="add">add +</button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item id="user" (click)="navigatePath(urlAddNewUser)">user</button>
-            <button mat-menu-item id="user-group" (click)="navigatePath(urlAddNewUserGroup)">userGroup</button>
+            <button mat-menu-item
+                    id="user"
+                    (click)="navigatePath(urlAddNewUser)">user</button>
+            <button mat-menu-item
+                    id="user-group"
+                    (click)="navigatePath(urlAddNewUserGroup)">userGroup</button>
         </mat-menu>
 
     </div>
@@ -26,12 +30,13 @@
                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.firstName ?? '' }}</td>
                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.lastName ?? ''}}</td>
                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.email ?? ''}}</td>
-                <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.type ?? ''}}</td>
+                <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.type}}</td>
                 <td class="whitespace-nowrap px-6 py-4 font-medium">
                     <mat-icon id="delete"
                               (click)="deletedItem(item.id)">delete</mat-icon>
+                              <span>{{item.type}}</span>
                     <mat-icon id="edit"
-                              (click)="editItem(item.id)">edit</mat-icon>
+                              (click)="editItem(item.id,item.type)">edit</mat-icon>
                 </td>
             </tr>
         </table>

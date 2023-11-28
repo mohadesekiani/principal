@@ -22,10 +22,29 @@ describe('SUT(Integration): ListItemComponent', () => {
         expect(sutPage.detectChanges()).toBeTruthy();
     });
 
-    it('should be called the addedUser function when the button is clicked', () => {
+
+    it('should trigger menu when button is clicked', () => {
         // act
-        sutPage.addEl.click();
+        sutPage.addButtonEl.click();
+        sutPage.detectChanges();
+
+        // assert
+        expect(sutPage.menuElement).toBeTruthy();
+    });
+
+    it('should be called the navigatePath function when the button #user is clicked', () => {
+        // act
+        sutPage.addButtonEl.click();
         sutPage.userButtonEl.click()
+
+        // assert
+        expect(sutPage.component.navigatePath).toHaveBeenCalled();
+    });
+
+    it('should be called the navigatePath function when the button #user-group is clicked', () => {
+        // act
+        sutPage.addButtonEl.click();
+        sutPage.userGroupButtonEl.click()
 
         // assert
         expect(sutPage.component.navigatePath).toHaveBeenCalled();
