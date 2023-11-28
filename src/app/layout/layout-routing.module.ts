@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormUserGroupComponent } from '../list-user-group/components/form-user-group/form-user-group.component';
-import { FormUserComponent } from '../list-user/component/form-user/form-user.component';
 import { ListItemComponent } from '../list-item/list-item.component';
 import { LayoutComponent } from './component/layout/layout.component';
+import { FormUserComponent } from '../users/component/form-user/form-user.component';
+import { FormUserGroupComponent } from '../user-groups/components/form-user-group/form-user-group.component';
 
 const routes: Routes = [
   {

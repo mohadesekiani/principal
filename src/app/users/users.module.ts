@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
-import { FormUserGroupComponent } from './components/form-user-group/form-user-group.component';
+import { FormUserComponent } from './component/form-user/form-user.component';
 
 @NgModule({
-  declarations: [FormUserGroupComponent],
+  declarations: [FormUserComponent],
   imports: [CommonModule, SharedModule],
-  providers: [],
+  providers: [
+
+  ],
 })
-export class ListUserGroupModule { }
+export class UsersModule {}
