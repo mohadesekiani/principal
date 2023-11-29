@@ -70,5 +70,9 @@ describe('SUT(Integration): ListItemComponent', () => {
         expect(sutPage.component.hasData).toBeTruthy()
     });
 
+    it('should be render truncated description in cell with matching tooltip', () => {
+        // assert
+        expect(sutPage.tdDescriptionWithId.children[0].nativeNode.attributes['ng-reflect-message'].value).toBe('test for description');
+    });
 
 });

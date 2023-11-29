@@ -8,7 +8,7 @@ import { IItem } from 'src/app/core/model/interface/user.interface';
 @Component({
   selector: 'app-list-item',
   templateUrl: './list-item.component.html',
-  styleUrls: ['./list-item.component.sass']
+  styleUrls: ['./list-item.component.scss']
 })
 export class ListItemComponent extends BaseListComponent<IItem> {
   urlAddNewUser = '/user/new';

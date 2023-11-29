@@ -26,7 +26,12 @@
                 *ngFor="let item of allData;">
                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.name}}</td>
                 <td class="whitespace-nowrap px-6 py-4 font-medium"
-                    [attr.item-id]="item.id">{{item.description}}</td>
+                    [attr.item-id]="item.id">
+                    <div class="truncate truncate-text mat-tooltip"
+                         matTooltip="{{item.description}}">
+                        {{ item.description }}
+                    </div>
+                </td>
                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.firstName ?? '' }}</td>
                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.lastName ?? ''}}</td>
                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{item.email ?? ''}}</td>
